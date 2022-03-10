@@ -1,0 +1,71 @@
+services:
+
+  reverse-proxy:
+    image: traefik:2.5
+    command: --api.insecure=true --providers.docker=true --entrypoints.web.address=:80
+    ports:
+      - "80:80"
+    #  - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      
+  mongodb:
+    image: bitnami/mongodb:4.2
+    volumes:
+      - "/srv/mongodb:/bitnami/mongodb"     # check that is mount exists on local filesystem
+      
+  catamel:
+    image: dacat/catamel:latest
+    depends_on:
+      - mongodb
+    volumes:
+      - ./config/catamel/config.local.js:/home/node/app/server/config.local.js
+    labels:
+      - "traefik.http.routers.catamel.rule=PathPrefix(`/api`, `/auth`, `/explorer`)"
+      - "traefik.http.routers.catamel.entrypoints=web"
+      
+  catanie:
+    image: pithan/frontend:latest
+    depends_on:
+      - catamel
+    labels:
+      - "traefik.http.routers.catanie.rule=PathPrefix(`/`)"
+      - "traefik.http.routers.catanie.entrypoints=web"
+    volumes:
+      - ./config/catanie/config.json:/usr/share/nginx/html/assets/config.json 
+      - ./config/catanie/site-logo.png:/usr/share/nginx/html/assets/images/site-logo.png
+      
+  search-api:
+    image: dacat/panosc-search-api:latest
+    depends_on: 
+      - catamel
+    labels:
+      - "traefik.http.routers.panosc-search-api.rule=PathPrefix(`/panosc-api`, `/panosc-explorer`)"
+      - "traefik.http.routers.panosc-search-api.entrypoints=web"
+    environment:
+      BASE_URL: "http://catamel:3000/api/v3"
+      FACILITY: "SAMPLE-SITE"
+
+  upload-frontend:
+    image: pithan/upload_frontend:latest
+    volumes:
+      - ./config/upload/env.js:/usr/share/nginx/html/env.js
+    labels:
+    # Match on the hostname and the path
+      - traefik.http.routers.upload-frontend.rule=PathPrefix(`/upload`)
+
+    # Define a new middleware to strip the URL prefix before sending it to nginx
+      - traefik.http.middlewares.upload-frontend-stripprefix.stripprefix.prefixes=/upload
+
+    # tell Traefik which middlewares we want to use on this container
+      - traefik.http.routers.upload-frontend.middlewares=upload-frontend-stripprefix@docker
+
+  backend-addon:
+    image: pithan/backend_addon:latest
+    depends_on:
+      - mongodb
+    labels:
+    # Match on the hostname and the path
+      - traefik.http.routers.api-addons.rule=PathPrefix(`/addons`,`/flask-apispec`,`/swagger`)
+  #    - traefik.http.services.api-addons.loadbalancer.server.port=5000
+
