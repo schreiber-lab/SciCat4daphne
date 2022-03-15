@@ -1,0 +1,2 @@
+export const ADD_MD_SCHEMA_KEY = 'ADD_MD_SCHEMA_KEY';
+
