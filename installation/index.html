@@ -1,0 +1,731 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-5.5.14">
+    
+    
+      
+        <title>Installation - SciCat 4 DAPHNE</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.d3202873.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#installation-of-scicat4daphne" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="SciCat 4 DAPHNE" class="md-header-nav__button md-logo" aria-label="SciCat 4 DAPHNE">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            SciCat 4 DAPHNE
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Installation
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="SciCat 4 DAPHNE" class="md-nav__button md-logo" aria-label="SciCat 4 DAPHNE">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    SciCat 4 DAPHNE
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Installation
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="Installation" class="md-nav__link md-nav__link--active">
+      Installation
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation-of-scicat4daphne" class="md-nav__link">
+    Installation of SciCat4daphne
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation of SciCat4daphne">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    Requirements
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    Getting started
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#necessary-adoptions" class="md-nav__link">
+    Necessary adoptions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#services-in-detail" class="md-nav__link">
+    Services in detail
+  </a>
+  
+    <nav class="md-nav" aria-label="Services in detail">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scicat-backend-catamel" class="md-nav__link">
+    SciCat Backend (Catamel)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scicat-frontend-catanie" class="md-nav__link">
+    SciCat Frontend (Catanie)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reverse-proxy-traefik" class="md-nav__link">
+    Reverse Proxy (Traefik)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-mongodb" class="md-nav__link">
+    Database (MongoDB)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upload-frontend" class="md-nav__link">
+    Upload Frontend
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addon-api" class="md-nav__link">
+    Addon API
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mongodb-web-gui-mongoexpress" class="md-nav__link">
+    MongoDB Web GUI (MongoExpress)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#maintenance-and-house-keeping" class="md-nav__link">
+    Maintenance and House Keeping
+  </a>
+  
+    <nav class="md-nav" aria-label="Maintenance and House Keeping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backup" class="md-nav__link">
+    Backup
+  </a>
+  
+    <nav class="md-nav" aria-label="Backup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#restore-from-backup" class="md-nav__link">
+    Restore from Backup
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-api" class="md-nav__link">
+    search-api
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../access_managment/" title="Access managment" class="md-nav__link">
+      Access managment
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../ingestion_frontend/" title="Ingestion frontend" class="md-nav__link">
+      Ingestion frontend
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../metadata_managment/" title="Metadata managment" class="md-nav__link">
+      Metadata managment
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../further_ideas/" title="Further ideas" class="md-nav__link">
+      Further ideas
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation-of-scicat4daphne" class="md-nav__link">
+    Installation of SciCat4daphne
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation of SciCat4daphne">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    Requirements
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    Getting started
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#necessary-adoptions" class="md-nav__link">
+    Necessary adoptions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#services-in-detail" class="md-nav__link">
+    Services in detail
+  </a>
+  
+    <nav class="md-nav" aria-label="Services in detail">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scicat-backend-catamel" class="md-nav__link">
+    SciCat Backend (Catamel)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scicat-frontend-catanie" class="md-nav__link">
+    SciCat Frontend (Catanie)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reverse-proxy-traefik" class="md-nav__link">
+    Reverse Proxy (Traefik)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-mongodb" class="md-nav__link">
+    Database (MongoDB)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upload-frontend" class="md-nav__link">
+    Upload Frontend
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addon-api" class="md-nav__link">
+    Addon API
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mongodb-web-gui-mongoexpress" class="md-nav__link">
+    MongoDB Web GUI (MongoExpress)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#maintenance-and-house-keeping" class="md-nav__link">
+    Maintenance and House Keeping
+  </a>
+  
+    <nav class="md-nav" aria-label="Maintenance and House Keeping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backup" class="md-nav__link">
+    Backup
+  </a>
+  
+    <nav class="md-nav" aria-label="Backup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#restore-from-backup" class="md-nav__link">
+    Restore from Backup
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-api" class="md-nav__link">
+    search-api
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                  <h1>Installation</h1>
+                
+                <div class="admonition warning">
+<p class="admonition-title">Project is still under active development</p>
+<p>Please consider this project in it's current state just as a 
+ draft. The api is not yet stable and there may still be important 
+ security vulnerabilities. Documentation is still far from being complete.</p>
+</div>
+<h2 id="installation-of-scicat4daphne">Installation of SciCat4daphne</h2>
+<h3 id="requirements">Requirements</h3>
+<p>The described installation has been tested on the following systems:</p>
+<ul>
+<li>Virtual machine running Ubuntu 20.04 </li>
+</ul>
+<p>Tested dependency Versions:</p>
+<ul>
+<li><code>docker</code> version 🔴</li>
+<li><code>docker-compose</code> version 🔴 installed via 🔴</li>
+</ul>
+<h3 id="getting-started">Getting started</h3>
+<p>Just navigate into the <code>scicatlive4daphne</code> directory and run</p>
+<pre><code>docker-compose up -d
+</code></pre>
+<p>to look at log messages use</p>
+<pre><code>docker-compose logs
+</code></pre>
+<p>to stop all services use</p>
+<pre><code>docker-compose down
+</code></pre>
+<h3 id="necessary-adoptions">Necessary adoptions</h3>
+<p>🔴 Still to be specified.</p>
+<ul>
+<li>config of upload frontend</li>
+<li>password of MongoExpress</li>
+<li>passwords of default users</li>
+</ul>
+<h2 id="services-in-detail">Services in detail</h2>
+<p>This is an overview of the different services invoked through docker-compose together with the most important configuration options.</p>
+<div class="admonition help">
+<p class="admonition-title">ask questions / contribute to the configuration</p>
+<p>Do not hesitate to participate in GitHub Issue 🔴</p>
+</div>
+<h3 id="scicat-backend-catamel">SciCat Backend (Catamel)</h3>
+<p>the configuration file is located in </p>
+<pre><code>scicatlive4daphne/config/catamel/config.local.js
+</code></pre>
+<p>but should not need site-specific changes for a basic installation. For a production environment the entries <code>pidPrefix</code> and <code>site</code> should be specified.</p>
+<h3 id="scicat-frontend-catanie">SciCat Frontend (Catanie)</h3>
+<p>this service uses the configuration file</p>
+<pre><code>scicatlive4daphne/config/catanie/config.json
+
+</code></pre>
+<p>where e.g. the appearance of the scientific metadata (tree view vs. simple tabular view) and the columns of the dataset table can be configured.</p>
+<h3 id="reverse-proxy-traefik">Reverse Proxy (Traefik)</h3>
+<p>this service is used to <em>stitch</em> the different services in docker-compose together</p>
+<h3 id="database-mongodb">Database (MongoDB)</h3>
+<p>all configuration happens in the <code>docker-compose.yaml</code>. Most important is the mounting point for the _ mongoDB_ on the host system which is specified at</p>
+<pre><code>    volumes:
+      - &quot;/srv/mongodb:/bitnami/mongodb&quot;     # check that is mount exists on local file-system
+</code></pre>
+<p>fd </p>
+<p>Obvious TODOs:
+  - specify the user of the host system that creates the db (currently it is the user with the uid 🔴)</p>
+<h3 id="upload-frontend">Upload Frontend</h3>
+<div class="admonition warning">
+<p class="admonition-title">Under development</p>
+<p>This service may still change significantly especially if parts of it will be ported to Catanie. Please consider this part of the project as a working draft to to define the necessary features.</p>
+</div>
+<p>Can be found at <code>http://scicat-host/upload</code>.</p>
+<h3 id="addon-api">Addon API</h3>
+<p>Currently there is no configuration for this service. An interactive api-documentation can be found at <code>http://scicat-host/swagger-ui</code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Not Stable</p>
+<p>This service may disappear completely in case it's functionality would be integrated into Catamel.</p>
+</div>
+<p>Know issues:</p>
+<ul>
+<li>calls to this additional backend api currently do not check the token issued by Catamel</li>
+</ul>
+<h3 id="mongodb-web-gui-mongoexpress">MongoDB Web GUI (MongoExpress)</h3>
+<p>Mainly intended for those who are managing the installation and for inspection of the DB. By default this service is deactivated (commented out in <code>docker-compose.yaml</code>). The login for this service is specified in the <code>docker-compose.yaml</code> and managed by <code>traefik</code>. The password is hashed using 🔴 which can e.g. be generated at 🔴.</p>
+<h2 id="maintenance-and-house-keeping">Maintenance and House Keeping</h2>
+<h3 id="backup">Backup</h3>
+<p>The current backup strategy 🔴</p>
+<p>🔶 TODO: Once there is a script for backup describe it here </p>
+<h4 id="restore-from-backup">Restore from Backup</h4>
+<p>🔴 Still to come...</p>
+<h3 id="search-api">search-api</h3>
+<p>🔶 TODO: still to be seen if there is a sensible how to integrate this in this context.</p>
+<!--
+ ### Symbols for doc writing 
+ ✅ ❌ ❓ 🔴 🔶
+ -->
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href=".." title="Home" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Home
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../access_managment/" title="Access managment" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Access managment
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.2d1db4bd.min.js"></script>
+      <script src="../assets/javascripts/bundle.6627ddf3.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
