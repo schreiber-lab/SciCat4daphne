@@ -1,3 +1,12 @@
-site_name: My Docs
+site_name: SciCat 4 DAPHNE
 theme:
   name: material
+markdown_extensions:
+  - admonition
+nav:
+  - 'index.md'
+  - 'installation.md'
+  - 'access_managment.md'
+  - 'ingestion_frontend.md'
+  - 'metadata_managment.md'
+  - 'further_ideas.md'
