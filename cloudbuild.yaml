@@ -1,0 +1,12 @@
+steps:
+- name: 'ubuntu'
+  volumes:
+  - name: 'vol1'
+    path: '/persistent_volume'
+  entrypoint: 'bash'
+  
+- name: 'gcr.io/cloud-builders/docker-compose'
+  args: ['up']
+  dir: 'scicatlive4daphne'
+
+tags: ['scicat4daphne']
