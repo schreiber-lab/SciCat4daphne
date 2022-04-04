@@ -1,5 +1,5 @@
 steps:
-- name: 'gcr.io/cloud-builders/docker-compose'
+- name: 'gcr.io/$PROJECT_ID/docker-compose'
   args: ['up']
   dir: 'scicatlive4daphne'
 
