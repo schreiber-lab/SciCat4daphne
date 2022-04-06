@@ -1,6 +1,6 @@
 import { Yup } from "../../../utils/validation";
 
 export const validationSchema = Yup.object({
-  schemaName: Yup.string().nullable(),
-  schemaType: Yup.string().nullable(),
+  schema_name: Yup.string().nullable().required(),
+  schema_type: Yup.string().nullable().required(),
 });

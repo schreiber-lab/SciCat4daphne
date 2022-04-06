@@ -5,7 +5,7 @@ import { Schema } from "./Schema";
 
 const useStyles = makeStyles(({ spacing }) => ({
   root: {
-    paddingTop: spacing(3),
+    // paddingTop: spacing(1),
     paddingBottom: spacing(2),
   },
 }));

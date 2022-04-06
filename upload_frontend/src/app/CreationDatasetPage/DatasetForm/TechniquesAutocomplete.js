@@ -35,7 +35,7 @@ export const TechniquesAutocomplete = ({ params = {}, creatablePayload, ...props
     <Autocomplete
       isAsync
       label="Techniques"
-      placeholder="Search technique..."
+      placeholder="Search and add techniques..."
       onNeedFetch={fetchTechnique(params)}
       renderOption={renderOption}
       getOptionLabel={((option) => option && option?._id?.name)}

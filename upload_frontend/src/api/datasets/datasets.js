@@ -1,8 +1,9 @@
 import { api } from "../api";
+import { transformMetadataSchemaRequest } from "../metadata-schemas";
 
 export const getDatasets = (config) => {
   return api
-    .get("/Datasets", config)
+    .get("/Datasets/fullquery", config)
     .then(({ data }) => {
       return data;
     })
@@ -37,8 +38,10 @@ export const getDataset = (id, config = {}) => {
 };
 
 export const createDataset = (data) => {
+  const scientificMetadata = transformMetadataSchemaRequest(data.scientificMetadata);
+  
   return api
-    .post("/Datasets", data)
+    .post("/Datasets", { ...data, scientificMetadata })
     .then(({ data }) => {
       return data;
     })

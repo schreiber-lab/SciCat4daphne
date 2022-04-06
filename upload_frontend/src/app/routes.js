@@ -7,7 +7,9 @@ import { CreationProposalPage } from './CreationProposalPage';
 import { CreationDatasetPage } from './CreationDatasetPage';
 import { CreationSamplePage } from './CreationSamplePage';
 import { CreationInstrumentPage } from './CreationInstrumentPage';
+import { MDSchemasPage } from './MDSchemasPage';
 import { CreationMDSchemaPage } from './CreationMDSchemaPage';
+import { ManagedSchemasPage } from './ManagedSchemasPage';
 import { ForbiddenPage } from '../components/ForbiddenPage';
 
 
@@ -49,8 +51,16 @@ export const routes = ({isAuthenticated}) => [
     element: isAuthenticated ? <CreationInstrumentPage/> : <ForbiddenPage/>
   },
   {
+    path: '/md-schemas',
+    element: isAuthenticated ? <MDSchemasPage/> : <ForbiddenPage/>
+  },
+  {
     path: '/md-schema-creation',
     element: isAuthenticated ? <CreationMDSchemaPage/> : <ForbiddenPage/>
+  },
+  {
+    path: '/managed-schemas',
+    element: isAuthenticated ? <ManagedSchemasPage/> : <ForbiddenPage/>
   },
 ];
 
