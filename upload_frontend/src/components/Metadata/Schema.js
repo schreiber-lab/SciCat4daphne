@@ -5,6 +5,7 @@ import {
   Checkbox,
   Collapse,
   IconButton,
+  Grid
 } from "@material-ui/core";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import { Row } from "./Row";
@@ -41,14 +42,17 @@ export const Schema = ({ schema, baseKey }) => {
       />
 
       <Collapse in={openCollapse} timeout="auto">
-        {schema.keys.map((field) => (
+        <Grid container spacing={2}>
+        {schema.keys?.map((field) => (
+          <Grid item key={field.key_name} xs={4}>
           <Row
-            key={field.key_name}
             field={field}
             schemaName={schema.schema_name}
             baseKey={baseKey}
           />
+          </Grid>
         ))}
+        </Grid>
       </Collapse>
       </div>
   );

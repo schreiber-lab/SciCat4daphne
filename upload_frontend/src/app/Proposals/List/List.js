@@ -11,9 +11,11 @@ import {
   Container,
   LinearProgress,
 } from "@material-ui/core";
+// import FingerprintIcon from "@material-ui/icons/Fingerprint";
 import { makeStyles } from "@material-ui/core/styles";
 import { getProposals } from "../../../redux/proposals/operations";
 import { Row } from "./Row";
+
 
 const useStyles = makeStyles(({ palette, spacing }) => ({
   root: {

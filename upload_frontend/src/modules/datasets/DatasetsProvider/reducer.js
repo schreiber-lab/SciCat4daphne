@@ -2,13 +2,21 @@ import { createHookReducer } from "../../../helpers/createHookReducer";
 import * as types from "./types";
 
 export const reducer = createHookReducer({
-  [types.ADD_DATASET]: (state, dataset ) => {
+  [types.ADD_DATASET]: (state, dataset) => {
     return {
       ...state,
 
       datasets: [ dataset, ...state.datasets ]
     };
   },
+
+  [types.UPDATE_PAGINATION]: (state, pagination) => {
+    return {
+      ...state,
+
+      pagination: { ...state.pagination, ...pagination }
+    };
+  }, 
 
   [types.LOAD_DATASETS_REQUEST]: (state) => {
     return {

@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   Button,
@@ -11,15 +9,12 @@ import {
 import { useForm, FormProvider } from "react-hook-form";
 import { preventDefault } from "../../helpers/preventDefault";
 import { yupResolver } from "../../utils/validation";
-import * as samplesApi from "../../api/samples";
-import { addSample } from "../../redux/samples/actions";
+import * as mdSchemasApi from "../../api/md-schemas";
 import { MDSchemaForm, validationSchema } from "./MDSchemaForm";
-import { CreateMDSchemaKeyModal } from "./CreateMDSchemaKeyModal";
-// import AddIcon from "@material-ui/icons/Add";
 
 const defaultValues = {
-  schemaName: null,
-  schemaType: null,
+  schema_name: null,
+  schema_type: null,
 };
 
 const useStyles = makeStyles(({ spacing }) => ({
@@ -37,18 +32,8 @@ const useStyles = makeStyles(({ spacing }) => ({
 }));
 
 export const CreationMDSchemaPage = () => {
-  const [open, setOpen] = useState(false);
   const classes = useStyles();
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const openCreationModal = () => {
-    setOpen(true);
-  };
-
-  const handleCreationModalClose = () => {
-    setOpen(false);
-  };
 
   const form = useForm({
     defaultValues,
@@ -56,9 +41,8 @@ export const CreationMDSchemaPage = () => {
   });
 
   const handleSubmit = (data) => {
-    samplesApi.createSample(data).then((data) => {
-      dispatch(addSample(data));
-      navigate("/md-schema");
+    mdSchemasApi.createMDSchema(data).then(() => {
+      navigate("/md-schemas");
     });
   };
 
@@ -76,25 +60,11 @@ export const CreationMDSchemaPage = () => {
           <MDSchemaForm />
         </FormProvider>
 
-        <footer className={classes.footer}>
-          <Box position="fixed" bottom={310} left={220}>
-            <Button
-              type="submit"
-              color="primary"
-              variant="contained"
-              onClick={openCreationModal}
-            >
-              Add key
-            </Button>
-            <CreateMDSchemaKeyModal
-              isOpen={open}
-              onClose={handleCreationModalClose}
-            />
-          </Box>
+        <Box mt={3} display="flex" justifyContent="flex-end">
           <Button type="submit" color="primary" variant="contained">
             Create MD schema
           </Button>
-        </footer>
+        </Box>
       </form>
     </Container>
   );

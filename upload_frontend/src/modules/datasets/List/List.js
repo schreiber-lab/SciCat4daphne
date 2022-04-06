@@ -12,8 +12,9 @@ import {
 } from "@material-ui/core";
 import { Row } from "./Row";
 import { DatasetsContext } from "../DatasetsProvider";
+import { TablePagination } from "../../../components/TablePagination";
 
-const useStyles = makeStyles(({ palette, spacing }) => ({
+const useStyles = makeStyles(({ palette }) => ({
   tableHeaderCell: {
     fontWeight: "bold",
     backgroundColor: palette.primary.dark,
@@ -25,7 +26,13 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
 
 export const List = ({ onDatasetSelect }) => {
   const classes = useStyles();
-  const { isLoaded, datasets, getDatasets } = useContext(DatasetsContext);
+  const {
+    isLoaded,
+    datasets,
+    pagination,
+    getDatasets,
+    handlePaginationChange,
+  } = useContext(DatasetsContext);
 
   useEffect(() => {
     getDatasets();
@@ -35,6 +42,11 @@ export const List = ({ onDatasetSelect }) => {
     <LinearProgress />
   ) : (
     <TableContainer component={Paper}>
+       <TablePagination
+        pagination={pagination}
+        onChange={handlePaginationChange}
+      />
+      
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -59,10 +71,19 @@ export const List = ({ onDatasetSelect }) => {
         </TableHead>
         <TableBody>
           {datasets.map((dataset) => (
-            <Row key={dataset.pid} dataset={dataset} onDatasetSelect={onDatasetSelect}/>
+            <Row
+              key={dataset.pid}
+              dataset={dataset}
+              onDatasetSelect={onDatasetSelect}
+            />
           ))}
         </TableBody>
       </Table>
+
+      <TablePagination
+        pagination={pagination}
+        onChange={handlePaginationChange}
+      />
     </TableContainer>
   );
 };

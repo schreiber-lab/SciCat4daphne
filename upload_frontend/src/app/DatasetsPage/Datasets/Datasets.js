@@ -10,11 +10,11 @@ const useStyles = makeStyles(({ spacing }) => ({
 
 export const Datasets = () => {
   const classes = useStyles();
-  
+
   return (
     <Container className={classes.root}>
       <DatasetsProvider>
-        <List />
+        <List/>
         <CreateDatasetButton />
       </DatasetsProvider>
     </Container>

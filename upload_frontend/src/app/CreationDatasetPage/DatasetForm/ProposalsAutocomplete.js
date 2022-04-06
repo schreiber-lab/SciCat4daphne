@@ -1,10 +1,10 @@
 import { Box, Typography } from '@material-ui/core';
-import * as datasetsApi from '../../../api/datasets';
+import * as proposalsApi from '../../../api/proposals';
 import { Autocomplete } from '../../../components/Autocomplete';
 
-const fetchDatasets = (params) => ({ search, loadedOptions = [], additionalData: { page = 0 } }) => {
+const fetchProposals = (params) => ({ search, loadedOptions = [], additionalData: { page = 0 } }) => {
     console.log(loadedOptions)
-  return datasetsApi.getDatasets({
+  return proposalsApi.getProposals({
     params: {
       find: search,
     //   page: page + 1,
@@ -26,22 +26,22 @@ const fetchDatasets = (params) => ({ search, loadedOptions = [], additionalData:
 const renderOption = (option) => {
   return (
     <Box clone width="100%" overflow="hidden">
-      <Typography>{option?.pid}</Typography>
+      <Typography>{option?.proposalId}</Typography>
     </Box>
   );
 };
 
-export const DatasetsAutocomplete = ({ params = {}, creatablePayload, ...props }) => {
+export const ProposalsAutocomplete = ({ params = {}, creatablePayload, ...props }) => {
   return (
     <Autocomplete
       isAsync
-      label="Datasets"
-      placeholder="Search dataset..."
-      onNeedFetch={fetchDatasets(params)}
+      label="Proposals"
+      placeholder="Search and add proposal..."
+      onNeedFetch={fetchProposals(params)}
       renderOption={renderOption}
-      getOptionLabel={((option) => option && option?.pid)}
-      getOptionValue={(option) => option?.pid}
-      getOptionSelected={(option, value) => option?.pid === value?.pid}
+      getOptionLabel={((option) => option && option?.proposalId)}
+      getOptionValue={(option) => option?.proposalId}
+      getOptionSelected={(option, value) => option?.proposalId === value?.proposalId}
 
       {...props}
     />

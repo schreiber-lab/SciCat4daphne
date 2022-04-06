@@ -1,4 +1,3 @@
-import { useDispatch } from "react-redux";
 import {
   Button,
   Dialog,
@@ -13,17 +12,19 @@ import { TextField } from "../../components/TextField";
 import { useForm, FormProvider } from "react-hook-form";
 import { preventDefault } from "../../helpers/preventDefault";
 import { yupResolver } from "../../utils/validation";
-import * as mdSchemaApi from "../../api/md-schema";
-import { addMDSchemaKey } from "../../redux/md-schema/actions";
 import { MDSchemaKeyForm, validationSchema } from "./MDSchemaKeyForm";
 
 const defaultValues = {
-  keyName: null,
-  keyType: null,
+  key_name: null,
+  key_type: null,
+  unit: null,
+  allowed: null,
+  required: null,
+  scan_ref: null,
+  changes_likely: null,
 };
 
-export const CreateMDSchemaKeyModal = ({ isOpen, onClose }) => {
-  const dispatch = useDispatch();
+export const CreateMDSchemaKeyModal = ({ isOpen, onClose, onResolve }) => {
   //   const { control } = useFormContext()
 
   const form = useForm({
@@ -32,14 +33,8 @@ export const CreateMDSchemaKeyModal = ({ isOpen, onClose }) => {
   });
 
   const handleSubmit = (data) => {
-    mdSchemaApi
-      .createMDSchemaKey(data)
-      .then((data) => {
-        dispatch(addMDSchemaKey(data));
-        onClose();
-      })
-      .catch(() => {});
-    console.log(data);
+    onResolve(data);
+    onClose();
   };
 
   return (
@@ -52,52 +47,11 @@ export const CreateMDSchemaKeyModal = ({ isOpen, onClose }) => {
         <DialogContent>
           <FormProvider {...form}>
             <MDSchemaKeyForm />
-
-            <FormGroup>
-              <FormControlLabel
-                control={<Checkbox defaultChecked />}
-                label="unit"
-              />
-              <TextField
-                fullWidth
-                margin="dense"
-                name="unit"
-                label=""
-                placeholder="Enter unit"
-              />
-
-              <FormControlLabel
-                control={<Checkbox defaultChecked />}
-                label="predefined values"
-              />
-              <TextField
-                fullWidth
-                margin="dense"
-                name="predefinedValue"
-                label=""
-                placeholder="Enter predefined values"
-              />
-
-              <FormGroup row={true}>
-                <FormControlLabel
-                  control={<Checkbox defaultChecked />}
-                  label="required"
-                />
-                <FormControlLabel
-                  control={<Checkbox defaultChecked />}
-                  label="scan_ref"
-                />
-                <FormControlLabel
-                  control={<Checkbox defaultChecked />}
-                  label="changes_likely"
-                />
-              </FormGroup>
-            </FormGroup>
           </FormProvider>
         </DialogContent>
 
         <DialogActions>
-          <Button onClick={onClose} variant="outlined" color="primary">
+          <Button variant="outlined" color="primary" onClick={onClose}>
             Cancel
           </Button>
 

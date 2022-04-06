@@ -95,7 +95,7 @@ export const ProposalForm = () => {
         <TextField
           fullWidth
           multiline
-          rows={3}
+          rows={4}
           className={classes.textField}
           variant="outlined"
           margin="dense"

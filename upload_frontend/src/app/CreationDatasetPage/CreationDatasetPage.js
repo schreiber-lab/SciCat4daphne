@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
@@ -12,6 +12,7 @@ import { useForm, FormProvider } from "react-hook-form";
 import { preventDefault } from "../../helpers/preventDefault";
 import { yupResolver } from "../../utils/validation";
 import * as datasetsApi from "../../api/datasets";
+import { validateMetadataSchema } from "../../api/metadata-schemas";
 import { addDataset } from "../../redux/datasets/actions";
 import { DatasetForm, validationSchema } from "./DatasetForm";
 import { SelectDatasetModal } from "../../modules/datasets/SelectDatasetModal";
@@ -19,7 +20,6 @@ import { SelectDatasetModal } from "../../modules/datasets/SelectDatasetModal";
 const defaultValues = {
   datasetName: null,
   sourceFolder: null,
-  // size: null,
   owner: "Schreiber_lab",
   contactEmail: null,
   creationTime: null,
@@ -27,7 +27,6 @@ const defaultValues = {
   type: null,
   description: null,
   group: "Schreiber_lab",
-  
 };
 
 const useStyles = makeStyles(({ spacing }) => ({
@@ -45,19 +44,25 @@ const useStyles = makeStyles(({ spacing }) => ({
 }));
 
 export const CreationDatasetPage = () => {
-  const [ open, setOpen ] = useState(false);
+  const [open, setOpen] = useState(false);
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const form = useForm({
     defaultValues,
     resolver: yupResolver(validationSchema),
   });
 
   const handleSubmit = (data) => {
-    datasetsApi.createDataset(data).then((data) => {
-      dispatch(addDataset(data));
-      navigate("/datasets");
+    validateMetadataSchema({
+      object_type: "dataset",
+      metadata: data.scientificMetadata,
+    }).then(() => {
+      datasetsApi.createDataset(data).then((data) => {
+        dispatch(addDataset(data));
+        navigate("/datasets");
+      });
     });
   };
 
@@ -69,11 +74,9 @@ export const CreationDatasetPage = () => {
     setOpen(false);
   };
 
-  const handleDatasetSelect = (dataset) => {
+  const handleDatasetSelect = ({ pid, ...dataset }) => {
     closeSelectDatasetModal();
-    form.reset(dataset, {
-
-    });
+    form.reset(dataset);
   };
 
   return (
@@ -86,16 +89,20 @@ export const CreationDatasetPage = () => {
         </Grid>
 
         <Grid item>
-          <Button variant="contained" color="primary" onClick={openSelectDatasetModal}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={openSelectDatasetModal}
+          >
             Apply template
           </Button>
 
-          <SelectDatasetModal 
-          isOpen={open} 
-          onClose={closeSelectDatasetModal} 
-          onDatasetSelect={handleDatasetSelect}
+          <SelectDatasetModal
+            isOpen={open}
+            onClose={closeSelectDatasetModal}
+            onDatasetSelect={handleDatasetSelect}
           />
-          </Grid>
+        </Grid>
       </Grid>
 
       <form

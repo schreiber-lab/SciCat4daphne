@@ -35,7 +35,7 @@ export const KeywordsAutocomplete = ({ params = {}, creatablePayload, ...props }
     <Autocomplete
       isAsync
       label="Keywords"
-      placeholder="Search keyword..."
+      placeholder="Search and add keywords..."
       onNeedFetch={fetchKeywords(params)}
       renderOption={renderOption}
       getOptionLabel={((option) => option && option?._id)}

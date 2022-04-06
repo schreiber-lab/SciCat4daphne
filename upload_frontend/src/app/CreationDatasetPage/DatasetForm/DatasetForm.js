@@ -4,8 +4,10 @@ import { Metadata } from "../../../components/Metadata";
 import { WarningBox } from "../../../components/WarningBox";
 import { KeywordsAutocomplete } from "./KeywordsAutocomplete";
 import { TechniquesAutocomplete } from "./TechniquesAutocomplete";
+import { InstrumentsAutocomplete } from "./InstrumentsAutocomplete";
 import { SamplesAutocomplete } from "./SamplesAutocomplete";
-import { DatasetsAutocomplete } from "./DatasetsAutocomplete";
+import { ProposalsAutocomplete } from "./ProposalsAutocomplete";
+
 
 export const DatasetForm = () => {
   return (
@@ -65,14 +67,9 @@ export const DatasetForm = () => {
         />
       </Grid>
 
+
       <Grid item sm={2} md={4}>
-        <TextField
-          required
-          fullWidth
-          name="ownerGroup"
-          label="Owner group"
-          placeholder="Enter owner group..."
-        />
+        <InstrumentsAutocomplete  name="instruments"/>
       </Grid>
 
       <Grid item sm={2} md={4}>
@@ -97,6 +94,23 @@ export const DatasetForm = () => {
         <TechniquesAutocomplete multiple name="techniques"/>
       </Grid>
 
+      <Grid item sm={2} md={4}>
+        <ProposalsAutocomplete  name="proposals"/>
+      </Grid>
+
+      <Grid item sm={2} md={4}>
+        <SamplesAutocomplete  name="samples"/>
+      </Grid>
+
+      <Grid item sm={2} md={4}>
+        <TextField
+          required
+          fullWidth
+          name="ownerGroup"
+          label="Owner group"
+          placeholder="Enter owner group..."
+        />
+      </Grid>
 
       <Grid item sm={2} md={4}>
         <TextField
@@ -105,14 +119,6 @@ export const DatasetForm = () => {
           label="Group"
           placeholder="Enter group..."
         />
-      </Grid>
-
-      <Grid item sm={2} md={4}>
-        <SamplesAutocomplete multiple name="samples"/>
-      </Grid>
-
-      <Grid item sm={2} md={4}>
-        <DatasetsAutocomplete multiple name="datasets"/>
       </Grid>
 
       <Grid item sm={2} md={4}>

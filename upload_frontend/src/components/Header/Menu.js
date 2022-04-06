@@ -18,6 +18,7 @@ import CreateNewFolderIcon from '@material-ui/icons/CreateNewFolder';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import LibraryAddIcon from '@material-ui/icons/LibraryAdd';
 import SettingsIcon from '@material-ui/icons/Settings';
+import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
 
 export const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -57,21 +58,21 @@ export const Menu = () => {
             </Box>
               <ListItemText primary={ <Typography style={{ marginLeft: 20 }}>Proposals</Typography>} />
             </ListItem>
-            <Divider />
+            {/* <Divider /> */}
             <ListItem button component={Link} to="/instruments">
             <Box color="primary.main">
               <SettingsIcon />
             </Box>
               <ListItemText primary={ <Typography style={{ marginLeft: 20 }}>Instruments</Typography>}/>
             </ListItem>
-            <Divider />
+            {/* <Divider /> */}
             <ListItem button component={Link} to="/samples">
             <Box color="primary.main">
             <CenterFocusWeakIcon/>
             </Box>
               <ListItemText primary={ <Typography style={{ marginLeft: 20 }}>Samples</Typography>} />
             </ListItem>
-            <Divider />
+            {/* <Divider /> */}
             <ListItem button component={Link} to="/datasets">
             <Box color="primary.main">
               <FolderIcon />
@@ -81,29 +82,27 @@ export const Menu = () => {
                   <Typography style={{ marginLeft: 20 }}>Datasets</Typography>}/>
             </ListItem>
             <Divider />
-            <Divider />
-            <Divider />
             <ListItem button component={Link} to="/proposal-creation">
             {/* <Box color="primary.main"> */}
            <CreateNewFolderIcon/>
             {/* </Box> */}
               <ListItemText primary={ <Typography style={{ marginLeft: 10 }}>Create Proposal</Typography>}/>
             </ListItem>
-            <Divider />
+            {/* <Divider /> */}
             <ListItem button component={Link} to="/instrument-creation">
             {/* <Box color="primary.main"> */}
             <CreateNewFolderIcon/>
             {/* </Box> */}
               <ListItemText primary={ <Typography style={{ marginLeft: 10 }}>Create Instrument</Typography>}/>
             </ListItem>
-            <Divider />
+            {/* <Divider /> */}
             <ListItem button component={Link} to="/sample-creation">
             {/* <Box color="primary.main"> */}
             <CreateNewFolderIcon/>
             {/* </Box> */}
               <ListItemText primary={ <Typography style={{ marginLeft: 10 }}>Create Sample</Typography>}/>
             </ListItem>
-            <Divider />
+            {/* <Divider /> */}
             <ListItem button component={Link} to="/dataset-creation">
             {/* <Box color="primary.main"> */}
             <CreateNewFolderIcon/>
@@ -111,20 +110,24 @@ export const Menu = () => {
               <ListItemText primary={ <Typography style={{ marginLeft: 10 }}>Create Dataset</Typography>}/>
             </ListItem>
             <Divider />
-            <Divider />
-            <Divider />
-            <ListItem button>
+            <ListItem button component={Link} to="/md-schemas">
             <Box color="primary.main">
             <LibraryBooksIcon/>
             </Box>
               <ListItemText primary="Show MD Schemas" />
             </ListItem>
-            <Divider />
+            {/* <Divider /> */}
             <ListItem button component={Link} to="/md-schema-creation">
             {/* <Box color="primary.main"> */}
             <LibraryAddIcon/>
             {/* </Box> */}
               <ListItemText primary="Create new MD Schema" />
+            </ListItem>
+            <ListItem button component={Link} to="/managed-schemas">
+            {/* <Box color="primary.main"> */}
+            <SettingsApplicationsIcon/>
+            {/* </Box> */}
+              <ListItemText primary="Managed schemas" />
             </ListItem>
           </List>
         </Box>

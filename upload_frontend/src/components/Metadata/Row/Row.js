@@ -1,15 +1,10 @@
-import { TextField } from "../../TextField";
+import { fieldsMap } from "./fiedsMap";
 
 export const Row = ({ field, schemaName, baseKey }) => {
-  return (
-    <TextField
-      fullWidth
-      required={field.required}
-      name={`${baseKey}.${schemaName}.fields.${field.key_name}`}
-      label={field.key_name}
-      variant="outlined"
-      margin="dense"
-      // focused
-    />
-  );
+  return (fieldsMap[field.type] || fieldsMap.string)({
+    name: `${baseKey}.${schemaName}.fields.${field.key_name}`,
+    label: field.key_name,
+    required: field.required,
+    field
+  });
 };
