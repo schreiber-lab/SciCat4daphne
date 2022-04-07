@@ -25,7 +25,7 @@ services:
       - "traefik.http.routers.catamel.entrypoints=web"
       
   catanie:
-    image: pithan/frontend:latest
+    image: dacat/catanie:latest
     depends_on:
       - catamel
     labels:
@@ -85,7 +85,7 @@ services:
        - traefik.http.routers.mongo-express.rule=PathPrefix(`/mongodb`)
        - traefik.http.services.mongo-express.loadbalancer.server.port=8081
        - "traefik.http.routers.mongo-express.middlewares=auth"
-       - "traefik.http.middlewares.auth.basicauth.users=admin:$$2a$$12$vyTh8.zQ85OygVq1q4cX4u50QJXfW1tSJn/dr2zuQFzAW6F31VUtq"
+       - "traefik.http.middlewares.auth.basicauth.users=admin:$$2a$$12$$vyTh8.zQ85OygVq1q4cX4u50QJXfW1tSJn/dr2zuQFzAW6F31VUtq"
          # the default user pre-perpeared here uses the admin login of scicatlive
          # use bcrypt e.g. https://bcrypt-generator.com/
 
