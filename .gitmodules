@@ -1,3 +1,0 @@
-[submodule "deploy/frontend"]
-	path = deploy/frontend
-	url = https://github.com/SciCatProject/frontend.git
