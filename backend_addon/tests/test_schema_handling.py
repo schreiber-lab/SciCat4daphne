@@ -17,6 +17,14 @@ def test_get_addons_metadata_schemas(client):
     assert response.status_code == 422
 
 
+def test_get_addons_metadata_schema(client):
+    # check this works for a given object_type
+    response = client.get("/addons/get_metadata_schema?schema_name=measurement")
+
+    schema = json.loads(response.data)
+    assert schema["schema_name"] == "measurement"
+
+
 def test_post_addons_metadata_schemas(client, mongodb):
     """
     check that schema can be added to the db and that invalid schema is rejected

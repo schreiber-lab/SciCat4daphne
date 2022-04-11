@@ -72,7 +72,7 @@ def get_metadata_schema(schema_name=None):
     db = flask.current_app.db
 
     md_schemas = db.metadata_schemas.find({"schema_name": schema_name}, {"_id": False})
-    dyn_schemas = [md for md in md_schemas]
+    dyn_schemas = [md for md in md_schemas][0]
     return flask.jsonify(dyn_schemas)
 
 
