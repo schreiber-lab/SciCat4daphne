@@ -65,10 +65,15 @@ def add_metadata_schema(**mds):
         )
 
 
-# To be removed, just to assure that frontend is still working until new endpoint is used
-@bp.get("/addons/dataset_metadata_schema")
-def get_dataset_metadata_schema():
-    return get_metadata_schemas(object_type="dataset")
+@bp.get("/addons/get_metadata_schema")
+@flask_apispec.use_kwargs(MdSchemaName, location="query")
+def get_metadata_schema(schema_name=None):
+
+    db = flask.current_app.db
+
+    md_schemas = db.metadata_schemas.find({"schema_name": schema_name}, {"_id": False})
+    dyn_schemas = [md for md in md_schemas]
+    return flask.jsonify(dyn_schemas)
 
 
 @bp.get("/addons/get_fixed_value_entries")
