@@ -122,3 +122,21 @@ def test_add_fixed_value_entries(client):
         "/addons/add_fixed_value_entries", data=json.dumps(data), headers=headers
     )
     assert b"unknown field" in response.data
+
+
+def test_post_addons_metadata_schemas_empty_schema(client, mongodb):
+    """
+    check that schema can be added to the db and that invalid schema is rejected
+    """
+
+    mimetype = "application/json"
+    headers = {"Content-Type": mimetype, "Accept": mimetype}
+    data = {
+        "schema_name": "test_md_schema",
+        "schema_type": "dataset",
+    }
+
+    response = client.post(
+        "/addons/metadata_schemas", data=json.dumps(data), headers=headers
+    )
+    assert response.status_code == 422

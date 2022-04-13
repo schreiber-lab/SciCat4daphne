@@ -86,7 +86,7 @@ def test_post_addons_validate_unit(client, use_prepop_db):
     data = deepcopy(BASE_DATA)
     data["metadata"].update(
         {
-            "GIWAXS_unit": {
+            "GIWAXS": {
                 "sample_detector_distance": {"value": 722, "unit": "mm"},
                 "central_pixel": [123, 345],
             },
@@ -102,7 +102,7 @@ def test_post_addons_validate_unit(client, use_prepop_db):
     data = deepcopy(BASE_DATA)
     data["metadata"].update(
         {
-            "GIWAXS_unit": {
+            "GIWAXS": {
                 "sample_detector_distance": {"value": 722, "unit": "no_real_unit"},
                 "central_pixel": [123, 345],
             },
@@ -117,3 +117,24 @@ def test_post_addons_validate_unit(client, use_prepop_db):
         in resp["message"]
     )
     assert resp["valid"] == False
+
+
+def test_post_addons_validate_check_wrong_type(client, use_prepop_db):
+    """
+    check that schema can be added to the db and that invalid schema is rejected
+    """
+    # check something without unit but of wrong type
+    data = {
+        "object_type": "dataset",
+        "metadata": {
+            "measurement": {"measurement_type": "beamtime"},
+            "GIWAXS_no_unit": {
+                "sample_detector_distance": "345",
+                "central_pixel": [456, 567],
+            },
+        },
+    }
+
+    response = _post_request(client, "/addons/validate", data)
+    assert response.status_code == 406
+    assert b"'sample_detector_distance': ['must be of number type']" in response.data
