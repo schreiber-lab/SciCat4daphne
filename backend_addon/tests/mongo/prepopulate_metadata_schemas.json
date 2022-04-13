@@ -131,7 +131,7 @@
       
     ],
     "fixed_value_entries": false,
-    "schema_name": "GIWAXS_unit",
+    "schema_name": "GIWAXS",
     "schema_type": "dataset"
   },
   {

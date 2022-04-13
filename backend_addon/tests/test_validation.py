@@ -86,7 +86,7 @@ def test_post_addons_validate_unit(client, use_prepop_db):
     data = deepcopy(BASE_DATA)
     data["metadata"].update(
         {
-            "GIWAXS_unit": {
+            "GIWAXS": {
                 "sample_detector_distance": {"value": 722, "unit": "mm"},
                 "central_pixel": [123, 345],
             },
@@ -102,7 +102,7 @@ def test_post_addons_validate_unit(client, use_prepop_db):
     data = deepcopy(BASE_DATA)
     data["metadata"].update(
         {
-            "GIWAXS_unit": {
+            "GIWAXS": {
                 "sample_detector_distance": {"value": 722, "unit": "no_real_unit"},
                 "central_pixel": [123, 345],
             },
