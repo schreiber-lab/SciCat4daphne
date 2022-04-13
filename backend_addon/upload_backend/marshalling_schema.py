@@ -49,7 +49,7 @@ class MdSchemaName(Schema):
 
 
 class MdSchemaSchema(MdSchemaName):
-    keys = fields.List(fields.Mapping, required=False)
+    keys = fields.List(fields.Mapping, required=True)
     schema_type = fields.String(
         required=True,
         description="specifies if this is for a dataset, instrument, sample...",
