@@ -4,11 +4,7 @@ import {
   DialogActions,
   DialogTitle,
   DialogContent,
-  FormGroup,
-  FormControlLabel,
-  Checkbox,
 } from "@material-ui/core";
-import { TextField } from "../../components/TextField";
 import { useForm, FormProvider } from "react-hook-form";
 import { preventDefault } from "../../helpers/preventDefault";
 import { yupResolver } from "../../utils/validation";
@@ -16,7 +12,7 @@ import { MDSchemaKeyForm, validationSchema } from "./MDSchemaKeyForm";
 
 const defaultValues = {
   key_name: null,
-  key_type: null,
+  type: null,
   unit: null,
   allowed: null,
   required: null,

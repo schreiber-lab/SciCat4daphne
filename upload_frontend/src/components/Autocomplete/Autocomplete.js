@@ -54,7 +54,7 @@ export const Autocomplete = forwardRef(({
   onChange = () => {},
   getInputProps = () => ({}),
   onNeedFetch = () => {},
-  onCreate = () => {},
+  onCreate = (value) => Promise.resolve(value),
 
   ...props
 }, ref) => {

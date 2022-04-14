@@ -18,7 +18,7 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import { getFixedValueEntries } from "../../../redux/fixed-value-entries/operations";
 import { Row } from "../../../modules/metadata-schemas/Entries/Row";
-import { AddEntryForm } from "../AddEntryForm";
+import { AddEntryButton } from "../AddEntryButton";
 
 const useStyles = makeStyles(({ palette, spacing }) => ({
   root: {
@@ -72,18 +72,14 @@ export const List = () => {
               onChange={handleSchemaNameChange}
             >
               <MenuItem value="material">material</MenuItem>
-              <MenuItem value="measurement">measurement</MenuItem>
-              <MenuItem value="facility">facility</MenuItem>
-              <MenuItem value="beamline">beamline</MenuItem>
-              <MenuItem value="beamtime">beamtime</MenuItem>
-              <MenuItem value="logbook">logbook</MenuItem>
-              <MenuItem value="XRR">XRR</MenuItem>
-              <MenuItem value="GIWAXS">GIWAXS</MenuItem>
+              <MenuItem value="measurements">measurements</MenuItem>
             </TextField>
           </Box>
+
           <Box display="flex" justifyContent="flex-end">
-            <AddEntryForm />
+            <AddEntryButton schemaName={schemaName} />
           </Box>
+
           </Box>
           {!fixedValueEntries.entries.length ? (
             <Typography

@@ -1,11 +1,20 @@
-import { useWatch } from "react-hook-form";
-import { FormGroup, FormControlLabel, MenuItem } from "@material-ui/core";
+import { useState } from "react";
+import { FormGroup, FormControlLabel, MenuItem, Checkbox } from "@material-ui/core";
 import { TextField } from "../../../components/TextField";
-import { Checkbox } from "../../../components/Checkbox";
+// import { Checkbox } from "../../../components/Checkbox";
+import { Autocomplete } from "../../../components/Autocomplete";
 
 export const MDSchemaKeyForm = () => {
-  const withUnit = useWatch({ name: "withUnit" });
-  const withPredefinedValues = useWatch({ name: "withPredefinedValues" });
+  const [checkboxes, setCheckboxes] = useState({});
+
+  const handleCheckboxChange =
+    (name) =>
+    ({ target: { checked } }) => {
+      setCheckboxes((checkboxes) => ({
+        ...checkboxes,
+        [name]: checked,
+      }));
+    };
 
   return (
     <>
@@ -22,8 +31,8 @@ export const MDSchemaKeyForm = () => {
         fullWidth
         select
         margin="dense"
-        name="key_type"
-        label="Key type"
+        name="type"
+        label="Type"
       >
         <MenuItem value="string">string</MenuItem>
         <MenuItem value="number">number</MenuItem>
@@ -33,11 +42,11 @@ export const MDSchemaKeyForm = () => {
 
       <FormGroup>
         <FormControlLabel
-          control={<Checkbox name="withUnit" />}
+          control={<Checkbox name="withUnit" checked={checkboxes.withUnit} onChange={handleCheckboxChange("withUnit")} />}
           label="Use unit"
         />
 
-        {withUnit && (
+        {!!checkboxes.withUnit && (
           <TextField
             fullWidth
             variant="outlined"
@@ -49,13 +58,21 @@ export const MDSchemaKeyForm = () => {
         )}
 
         <FormControlLabel
-          control={<Checkbox name="withPredefinedValues" />}
+          control={
+            <Checkbox
+              name="withPredefinedValues"
+              checked={checkboxes.withPredefinedValues}
+              onChange={handleCheckboxChange("withPredefinedValues")}
+            />
+          }
           label="Use predefined values"
         />
 
-        {withPredefinedValues && (
-          <TextField
+        {!!checkboxes.withPredefinedValues && (
+          <Autocomplete
             fullWidth
+            multiple
+            isCreatable
             variant="outlined"
             margin="dense"
             name="allowed"

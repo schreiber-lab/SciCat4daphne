@@ -8,6 +8,13 @@ const initialState = {
 };
 
 export const reducer = createReduxReducer(initialState, {
+  [types.ADD_FIXED_VALUE_ENTRIES]: (state, fixedValueEntry) => {
+    return {
+      ...state,
+
+      fixedValueEntries: [fixedValueEntry, ...state.fixedValueEntries],
+    };
+  },
 
   [types.LOAD_FIXED_VALUE_ENTRIES_REQUEST]: (state) => { 
     return {

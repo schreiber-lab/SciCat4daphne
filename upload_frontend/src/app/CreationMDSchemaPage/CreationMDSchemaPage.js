@@ -15,6 +15,8 @@ import { MDSchemaForm, validationSchema } from "./MDSchemaForm";
 const defaultValues = {
   schema_name: null,
   schema_type: null,
+  fixed_value_entries: false,
+  keys: [],
 };
 
 const useStyles = makeStyles(({ spacing }) => ({

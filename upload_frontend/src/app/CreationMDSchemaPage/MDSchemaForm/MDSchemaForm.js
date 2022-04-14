@@ -4,7 +4,6 @@ import {
   Grid,
   Box,
   FormControlLabel,
-  Checkbox,
   MenuItem,
   Button,
   Typography,
@@ -12,20 +11,17 @@ import {
 import { Keys } from "../../../modules/metadata-schemas";
 import { TextField } from "../../../components/TextField";
 import { CreateMDSchemaKeyModal } from "../CreateMDSchemaKeyModal";
+import { Checkbox } from "../../../components/Checkbox";
 
-// const useStyles = makeStyles(({ spacing }) => ({
-//   textField: {
-//     paddingRight: spacing(6),
-//   },
-// }));
 
 export const MDSchemaForm = () => {
   const [open, setOpen] = useState(false);
-  const { setValue, getValues } = useFormContext();
+  const { setValue, getValues, reset } = useFormContext();
   const keys = useWatch({ name: "keys" });
-  console.log(keys);
+  // register("keys")
+ 
   const addKey = (key) => {
-    setValue("keys", (getValues().keys || []).concat(key));
+    reset({ ...getValues(), "keys": (getValues().keys || []).concat(key) });
     console.log((getValues().keys || []).concat(key));
   };
 
@@ -37,7 +33,6 @@ export const MDSchemaForm = () => {
     setOpen(false);
   };
 
-  // const classes = useStyles();
   return (
     <>
       <Grid container spacing={3}>
@@ -66,7 +61,7 @@ export const MDSchemaForm = () => {
 
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox />}
+            control={<Checkbox  name="fixed_value_entries"/>}
             label="Fixed value entries"
           />
         </Grid>
@@ -82,6 +77,7 @@ export const MDSchemaForm = () => {
             <Button
               color="primary"
               variant="contained"
+              type="button"
               onClick={openCreationModal}
             >
               Add key
