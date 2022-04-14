@@ -8,6 +8,7 @@ import {
   makeStyles,
   Grid,
 } from "@material-ui/core";
+import { useSnackbar } from "notistack"
 import { useForm, FormProvider } from "react-hook-form";
 import { preventDefault } from "../../helpers/preventDefault";
 import { yupResolver } from "../../utils/validation";
@@ -16,6 +17,7 @@ import { validateMetadataSchema } from "../../api/metadata-schemas";
 import { addDataset } from "../../redux/datasets/actions";
 import { DatasetForm, validationSchema } from "./DatasetForm";
 import { SelectDatasetModal } from "../../modules/datasets/SelectDatasetModal";
+
 
 const defaultValues = {
   datasetName: null,
@@ -45,6 +47,7 @@ const useStyles = makeStyles(({ spacing }) => ({
 
 export const CreationDatasetPage = () => {
   const [open, setOpen] = useState(false);
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -58,12 +61,18 @@ export const CreationDatasetPage = () => {
     validateMetadataSchema({
       object_type: "dataset",
       metadata: data.scientificMetadata,
-    }).then(() => {
-      datasetsApi.createDataset(data).then((data) => {
-        dispatch(addDataset(data));
-        navigate("/datasets");
+    })
+      .then(() => {
+        datasetsApi.createDataset(data).then((data) => {
+          dispatch(addDataset(data));
+          navigate("/datasets");
+        });
+      })
+      .catch(() => {
+        enqueueSnackbar("Your dataset wasn't created. Check the data you entered.", {
+          variant: "error",
+        });
       });
-    });
   };
 
   const openSelectDatasetModal = () => {

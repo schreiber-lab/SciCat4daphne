@@ -2,16 +2,19 @@ import { Grid } from "@material-ui/core";
 import { TextField } from "../../../components/TextField";
 import { Metadata } from "../../../components/Metadata";
 
-// const useStyles = makeStyles(({ spacing }) => ({
-//   textField: {
-//     paddingRight: spacing(6),
-//   },
-// }));
 
 export const SampleForm = () => {
-  // const classes = useStyles();
   return (
     <Grid container>
+       <Grid item sm={6} md={7}>
+        <TextField
+          required
+          fullWidth
+          margin="dense"
+          name="sampleId"
+          label="Sample Id"
+        />
+      </Grid>
       <Grid item sm={6} md={7}>
         <TextField
           required

@@ -11,7 +11,7 @@ export const getFixedValueEntries = (config) => {
     });
 };  
 
-export const createFixedValueEntries = (data) => {
+export const createFixedValueEntry = (data) => {
   return api2
     .post("/addons/add_fixed_value_entries", data)
     .then(({ data }) => {

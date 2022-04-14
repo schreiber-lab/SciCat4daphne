@@ -30,6 +30,8 @@ export const fieldsMap = {
   },
 
   list: ({ field, ...props }) => {
+    const isNumber = field.schema?.type === "number";
+
     return (
       <Autocomplete
         fullWidth
@@ -37,7 +39,7 @@ export const fieldsMap = {
         multiple
         variant="outlined"
         margin="dense"
-        onCreate={(value) => console.log(value) || Promise.resolve(value)}
+        onCreate={(value) => Promise.resolve(isNumber ? +value : value)}
         {...props}
       />
     );

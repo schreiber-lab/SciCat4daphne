@@ -1,10 +1,13 @@
 export const removeEmpty = (object, isEmpty) => {
-  return Object.fromEntries(
-    Object.entries(object)
-      .filter(([_, value]) => !isEmpty(value))
-      .map(([key, value]) => [
-        key,
-        value === Object(value) ? removeEmpty(value, isEmpty) : value,
-      ])
-  );
+  const isArray = Array.isArray(object);
+  
+  const result = Object.entries(object)
+    .filter(([ key, value ]) => !isEmpty(value))
+    .map(([ key, value ]) => {
+      const result = value === Object(value) ? removeEmpty(value, isEmpty) : value;
+      
+      return isArray ? result : [ key, result ];
+    });
+  
+  return isArray ? result : Object.fromEntries(result);
 };

@@ -27,6 +27,17 @@ export const getMetadataSchemas = (config) => {
     });
 };
 
+export const getMetadataSchema = (config) => {
+  return api2
+    .get("/addons/get_metadata_schema", config)
+    .then(({ data }) => {
+      return data;
+    })
+    .catch((data) => {
+      throw data;
+    });
+};
+
 export const validateMetadataSchema = (data) => {
   return api2
     .post("/addons/validate", {
