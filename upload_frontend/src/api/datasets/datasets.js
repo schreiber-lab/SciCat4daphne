@@ -1,6 +1,15 @@
 import { api } from "../api";
 import { transformMetadataSchemaRequest } from "../metadata-schemas";
 
+const transformDatasetRequest = (dataset) => {
+  return {
+    ...dataset,
+
+    pid: dataset.datasetName + dataset.proposalId + dataset.sampleId,
+    scientificMetadata: transformMetadataSchemaRequest(dataset.scientificMetadata)
+  };
+};
+
 export const getDatasets = (config) => {
   return api
     .get("/Datasets/fullquery", config)
@@ -38,10 +47,8 @@ export const getDataset = (id, config = {}) => {
 };
 
 export const createDataset = (data) => {
-  const scientificMetadata = transformMetadataSchemaRequest(data.scientificMetadata);
-  
   return api
-    .post("/Datasets", { ...data, scientificMetadata })
+    .post("/Datasets", transformDatasetRequest(data))
     .then(({ data }) => {
       return data;
     })

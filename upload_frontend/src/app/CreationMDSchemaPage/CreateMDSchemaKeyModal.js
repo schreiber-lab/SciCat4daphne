@@ -15,12 +15,12 @@ const defaultValues = {
   type: null,
   unit: null,
   allowed: null,
-  required: null,
-  scan_ref: null,
-  changes_likely: null,
+  required: false,
+  scan_ref: false,
+  changes_likely: false,
 };
 
-export const CreateMDSchemaKeyModal = ({ isOpen, onClose, onResolve }) => {
+export const CreateMDSchemaKeyModal = ({ DialogProps, handleModalResolve, handleModalReject }) => {
   //   const { control } = useFormContext()
 
   const form = useForm({
@@ -29,12 +29,11 @@ export const CreateMDSchemaKeyModal = ({ isOpen, onClose, onResolve }) => {
   });
 
   const handleSubmit = (data) => {
-    onResolve(data);
-    onClose();
+    handleModalResolve(data);
   };
 
   return (
-    <Dialog open={isOpen} onClose={onClose}>
+    <Dialog {...DialogProps}>
       <form
         noValidate
         onSubmit={preventDefault(form.handleSubmit(handleSubmit))}
@@ -47,7 +46,7 @@ export const CreateMDSchemaKeyModal = ({ isOpen, onClose, onResolve }) => {
         </DialogContent>
 
         <DialogActions>
-          <Button variant="outlined" color="primary" onClick={onClose}>
+          <Button variant="outlined" color="primary" onClick={handleModalReject}>
             Cancel
           </Button>
 
