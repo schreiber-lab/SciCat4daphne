@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { FormGroup, FormControlLabel, MenuItem, Checkbox } from "@material-ui/core";
+import { FormGroup, FormControlLabel, MenuItem, Checkbox as MuiCheckbox } from "@material-ui/core";
 import { TextField } from "../../../components/TextField";
-// import { Checkbox } from "../../../components/Checkbox";
+import { Checkbox } from "../../../components/Checkbox";
 import { Autocomplete } from "../../../components/Autocomplete";
 
 export const MDSchemaKeyForm = () => {
@@ -42,7 +42,13 @@ export const MDSchemaKeyForm = () => {
 
       <FormGroup>
         <FormControlLabel
-          control={<Checkbox name="withUnit" checked={checkboxes.withUnit} onChange={handleCheckboxChange("withUnit")} />}
+          control={
+            <MuiCheckbox 
+              name="withUnit" 
+              checked={checkboxes.withUnit} 
+              onChange={handleCheckboxChange("withUnit")} 
+            />
+          }
           label="Use unit"
         />
 
@@ -59,7 +65,7 @@ export const MDSchemaKeyForm = () => {
 
         <FormControlLabel
           control={
-            <Checkbox
+            <MuiCheckbox
               name="withPredefinedValues"
               checked={checkboxes.withPredefinedValues}
               onChange={handleCheckboxChange("withPredefinedValues")}

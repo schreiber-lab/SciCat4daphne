@@ -18,24 +18,24 @@ export const TablePaginationActions = ({
   count,
   page,
   rowsPerPage,
-  onPageChange,
+  onChangePage,
 }) => {
   const classes = useStyles();
 
   const handleFirstPageButtonClick = (event) => {
-    onPageChange(event, 0);
+    onChangePage(event, 0);
   };
 
   const handleBackButtonClick = (event) => {
-    onPageChange(event, page - 1);
+    onChangePage(event, page - 1);
   };
 
   const handleNextButtonClick = (event) => {
-    onPageChange(event, page + 1);
+    onChangePage(event, page + 1);
   };
 
   const handleLastPageButtonClick = (event) => {
-    onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
+    onChangePage(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
   };
 
   return (
