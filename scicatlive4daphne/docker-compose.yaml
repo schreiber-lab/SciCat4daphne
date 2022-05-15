@@ -13,13 +13,15 @@ services:
     image: bitnami/mongodb:4.2
     volumes:
       - "/srv/mongodb:/bitnami/mongodb"     # check that is mount exists on local filesystem
-      
+
   catamel:
     image: dacat/catamel:latest
     depends_on:
       - mongodb
     volumes:
       - ./config/catamel/config.local.js:/home/node/app/server/config.local.js
+      - ./config/catamel/functionalAccounts.json:/home/node/app/server/functionalAccounts.json
+
     labels:
       - "traefik.http.routers.catamel.rule=PathPrefix(`/api`, `/auth`, `/explorer`)"
       - "traefik.http.routers.catamel.entrypoints=web"
