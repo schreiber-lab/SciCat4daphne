@@ -207,6 +207,19 @@
     Authentication
   </a>
   
+    <nav class="md-nav" aria-label="Authentication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#temporarily-solution" class="md-nav__link">
+    Temporarily solution
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -285,6 +298,19 @@
     Authentication
   </a>
   
+    <nav class="md-nav" aria-label="Authentication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#temporarily-solution" class="md-nav__link">
+    Temporarily solution
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -313,10 +339,11 @@
                   <h1>Access managment</h1>
                 
                 <h2 id="authentication">Authentication</h2>
-<p>🔶 One idea is to look into ORCID as identity provider.</p>
-<p>🔴 Still to come...</p>
+<p>Having the spirit of DAPHNE in mind we would like to use an Authentication that can work for most institutions in DAPHNE out of the box. An evident candidate for an AAI solution to achieve this would be <a href="https://hifis.net/doc/helmholtz-aai/">HIFIS AAI</a> which provides the OIDC protocol that is also supported by SciCat. Another option that could be considered would be to use the public service offered by <a href="https://info.orcid.org/faq/what-is-openid/">ORCID</a> as identity provider.</p>
+<h3 id="temporarily-solution">Temporarily solution</h3>
+<p>Until the decision has been taken which authentication service to rely on we use the integrated account management in SciCat that is originally intended for (functional accounts)[https://scicatproject.github.io/documentation/Development/Login.html] only. To create a new user account, it has to be added with an initial password in <code>functionalAccounts.json</code> file provided in the config for the provided docker compose solution (<code>scicatlive4daphne/config/catamel/functionalAccounts.json</code>). Since this initial password is keep in clear text it should be changed using the API endpoint <a href="https://scicatproject.github.io/api/#operation/User.changePassword"><code>Users/change-password</code></a> , e.g. though the api explorer for the time being.</p>
 <h2 id="access-management">Access management</h2>
-<p>🔴 Still to come...</p>
+<p>Currently we do not see the need to restrict the access of authenticated users to certain datasets. This is evidently a major difference to SciCat installation at large scale facilities. However, establishing access management rules is foreseen in SciCat and can therefor be added with relatively low efforts.</p>
                 
               
               
