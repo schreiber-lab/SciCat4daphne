@@ -35,7 +35,7 @@ export const ProposalsAutocomplete = ({ params = {}, creatablePayload, ...props 
   return (
     <Autocomplete
       isAsync
-      label="Proposal"
+      label="Proposals"
       placeholder="Search and add proposal..."
       onNeedFetch={fetchProposals(params)}
       renderOption={renderOption}

@@ -2,11 +2,11 @@ import { Box, Typography } from '@material-ui/core';
 import * as fullfacetsApi from '../../../api/fullfacets';
 import { Autocomplete } from '../../../components/Autocomplete';
 
-const fetchKeywords = (params) => ({ loadedOptions = [] }) => {
+const fetchTechnique = (params) => ({ loadedOptions = [] }) => {
     console.log(loadedOptions)
   return fullfacetsApi.getFullfacets({
     params: {
-      facets: "keywords",
+      facets: "techniques",
     //   page: page + 1,
 
       ...params
@@ -14,7 +14,7 @@ const fetchKeywords = (params) => ({ loadedOptions = [] }) => {
   }).then((data) => {
     return {
     //   hasMore: pagination.page < pagination.last_page && pagination.total > 0,
-      options: loadedOptions.concat(data[0].keywords),
+      options: loadedOptions.concat(data[0].techniques),
     //   additionalData: {
     //     page: pagination.page
     //   }
@@ -25,22 +25,22 @@ const fetchKeywords = (params) => ({ loadedOptions = [] }) => {
 const renderOption = (option) => {
   return (
     <Box clone width="100%" overflow="hidden">
-      <Typography>{option?._id}</Typography>
+      <Typography>{option?._id?.name}</Typography>
     </Box>
   );
 };
 
-export const KeywordsAutocomplete = ({ params = {}, creatablePayload, ...props }) => {
+export const TechniquesAutocomplete = ({ params = {}, creatablePayload, ...props }) => {
   return (
     <Autocomplete
       isAsync
-      label="Keywords"
-      placeholder="Search and add keywords..."
-      onNeedFetch={fetchKeywords(params)}
+      label="Techniques"
+      placeholder="Search and add techniques..."
+      onNeedFetch={fetchTechnique(params)}
       renderOption={renderOption}
-      getOptionLabel={((option) => option && option?._id)}
-      getOptionValue={(option) => option?._id}
-      getOptionSelected={(option, value) => option?._id === value?._id}
+      getOptionLabel={((option) => option && option?._id?.name)}
+      getOptionValue={(option) => option?._id?.pid}
+      getOptionSelected={(option, value) => option?._id?.pid === value?._id?.pid}
 
       {...props}
     />

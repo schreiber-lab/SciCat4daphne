@@ -8,7 +8,6 @@ import {
   Paper,
   Typography,
 } from "@material-ui/core";
-import { useWatch, useFormContext } from "react-hook-form";
 import { makeStyles } from "@material-ui/core/styles";
 import { Row } from "./Row";
 
@@ -22,10 +21,6 @@ const useStyles = makeStyles(({ palette }) => ({
 
 export const Keys = ({ keys }) => {
   const classes = useStyles();
-  // React Hook Form
-  const formContext = useFormContext();
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const isFixedValueEntries = !!(formContext && useWatch({ name: "fixed_value_entries"}));
 
   return !keys?.length ? (
     <Typography>Keys weren't found</Typography>
@@ -34,8 +29,6 @@ export const Keys = ({ keys }) => {
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>
-            {isFixedValueEntries && <TableCell className={classes.tableHeaderCell}>Id key</TableCell>}
-
             <TableCell className={classes.tableHeaderCell}>Key name</TableCell>
 
             <TableCell className={classes.tableHeaderCell}>Type</TableCell>
