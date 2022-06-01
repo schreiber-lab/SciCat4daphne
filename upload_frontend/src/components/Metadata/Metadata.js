@@ -1,17 +1,9 @@
 import { useState, useEffect } from "react";
-import { Typography, Container, makeStyles } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import { getMetadataSchemas } from "../../api/metadata-schemas";
 import { Schema } from "./Schema";
 
-const useStyles = makeStyles(({ spacing }) => ({
-  root: {
-    // paddingTop: spacing(1),
-    paddingBottom: spacing(2),
-  },
-}));
-
 export const Metadata = ({ baseKey, objectType, title }) => {
-  const classes = useStyles();
   const [metadataSchemas, setMetadataSchemas] = useState(null);
 
   useEffect(() => {
@@ -25,7 +17,7 @@ export const Metadata = ({ baseKey, objectType, title }) => {
   }, []);
 
   return (
-    <Container className={classes.root}>
+    <div>
       <Typography component="h1" variant="h5">
         {title}
       </Typography>
@@ -33,6 +25,6 @@ export const Metadata = ({ baseKey, objectType, title }) => {
       {metadataSchemas?.map((schema) => (
         <Schema key={schema.schema_name} schema={schema} baseKey={baseKey} />
       ))}
-    </Container>
+    </div>
   );
 };

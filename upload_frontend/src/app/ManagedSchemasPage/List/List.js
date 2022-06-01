@@ -12,13 +12,12 @@ import {
   Container,
   LinearProgress,
   Typography,
-  MenuItem,
-  TextField,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { getFixedValueEntries } from "../../../redux/fixed-value-entries/operations";
 import { Row } from "../../../modules/metadata-schemas/Entries/Row";
 import { AddEntryButton } from "../AddEntryButton";
+import { MetadataSchemasAutocomplete } from "../../../modules/metadata-schemas";
 
 const useStyles = makeStyles(({ palette, spacing }) => ({
   root: {
@@ -39,19 +38,27 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
 export const List = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [schemaName, setSchemaName] = useState("material");
+  const [schema, setSchema] = useState({ schema_name: "material" });
+  const [entriesProps, setEntriesProps] = useState([]);
   const { isLoaded, fixedValueEntries } = useSelector(
     ({ fixedValueEntries }) => fixedValueEntries
   );
 
-  const handleSchemaNameChange = ({ target: { value } }) => {
-    dispatch(getFixedValueEntries({ schema_name: value }));
-    setSchemaName(value);
+  const handleSchemaNameChange = (schema) => {
+    // console.log(schemaName)
+    dispatch(getFixedValueEntries({ schema_name: schema.schema_name }));
+    setSchema(schema);
   };
 
   useEffect(() => {
-    dispatch(getFixedValueEntries({ schema_name: schemaName }));
+    dispatch(getFixedValueEntries({ schema_name: schema.schema_name }));
   }, []);
+
+  useEffect(() => {
+    if (fixedValueEntries.entries.length) {
+      setEntriesProps(Object.keys(fixedValueEntries.entries[0]));
+    }
+  }, [fixedValueEntries]);
 
   return (
     <Container className={classes.root}>
@@ -59,9 +66,9 @@ export const List = () => {
         <LinearProgress />
       ) : (
         <>
-        <Box>
-          <Box mb={-5} mt={4} maxWidth={300} mx="auto">
-            <TextField
+          <Box>
+            <Box mb={-5} mt={4} maxWidth={300} mx="auto">
+              {/* <TextField
               required
               fullWidth
               select
@@ -72,14 +79,20 @@ export const List = () => {
               onChange={handleSchemaNameChange}
             >
               <MenuItem value="material">material</MenuItem>
-              <MenuItem value="measurements">measurements</MenuItem>
-            </TextField>
-          </Box>
+            </TextField> */}
+              <MetadataSchemasAutocomplete
+                disableClearable
+                value={schema}
+                params={{
+                  object_type: "sample",
+                }}
+                onChange={handleSchemaNameChange}
+              />
+            </Box>
 
-          <Box display="flex" justifyContent="flex-end">
-            <AddEntryButton schemaName={schemaName} />
-          </Box>
-
+            <Box display="flex" justifyContent="flex-end">
+              <AddEntryButton schemaName={schema.schema_name} />
+            </Box>
           </Box>
           {!fixedValueEntries.entries.length ? (
             <Typography
@@ -95,23 +108,21 @@ export const List = () => {
                 <Table aria-label="simple table">
                   <TableHead>
                     <TableRow>
-                      <TableCell className={classes.tableHeaderCell}>
-                        Full name
-                      </TableCell>
-
-                      <TableCell className={classes.tableHeaderCell}>
-                        Material id
-                      </TableCell>
-
-                      <TableCell className={classes.tableHeaderCell}>
-                        Formula
-                      </TableCell>
+                      {entriesProps.map((property) => (
+                        <TableCell className={classes.tableHeaderCell}>
+                          {property}
+                        </TableCell>
+                      ))}
                     </TableRow>
                   </TableHead>
 
                   <TableBody>
-                    {fixedValueEntries.entries?.map((entry) => (
-                      <Row key={entry.material_id} field={entry} />
+                    {fixedValueEntries.entries?.map((entry, index) => (
+                      <Row
+                        key={index}
+                        field={entry}
+                        entriesProps={entriesProps}
+                      />
                     ))}
                   </TableBody>
                 </Table>

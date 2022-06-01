@@ -5,13 +5,13 @@ import {
   Checkbox,
   Collapse,
   IconButton,
-  Grid
+  Grid,
 } from "@material-ui/core";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import { Row } from "./Row";
 
 export const Schema = ({ schema, baseKey }) => {
-  const [ openCollapse, setOpenCollapse ] = useState(false);
+  const [openCollapse, setOpenCollapse] = useState(false);
   const { control } = useFormContext();
 
   const toggleCollapse = () => {
@@ -43,17 +43,20 @@ export const Schema = ({ schema, baseKey }) => {
 
       <Collapse in={openCollapse} timeout="auto">
         <Grid container spacing={2}>
-        {schema.keys?.map((field) => (
-          <Grid item key={field.key_name} xs={4}>
-          <Row
-            field={field}
-            schemaName={schema.schema_name}
-            baseKey={baseKey}
-          />
-          </Grid>
-        ))}
+          {schema.keys?.map((field) => {
+            const isFixedValueEntryKey = schema.id_key === field.key_name;
+            const isVisible = !schema.fixed_value_entries || isFixedValueEntryKey;
+
+            return (
+              isVisible && (
+                <Grid item key={field.key_name} xs={4}>
+                  <Row field={field} schema={schema} baseKey={baseKey} />
+                </Grid>
+              )
+            );
+          })}
         </Grid>
       </Collapse>
-      </div>
+    </div>
   );
 };

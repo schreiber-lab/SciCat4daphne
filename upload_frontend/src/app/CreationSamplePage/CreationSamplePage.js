@@ -64,9 +64,9 @@ export const CreationSamplePage = () => {
         </FormProvider>
 
         <footer className={classes.footer}>
-        <Button type="submit" color="primary" variant="contained">
-          Add sample
-        </Button>
+          <Button type="submit" color="primary" variant="contained">
+            Add sample
+          </Button>
         </footer>
       </form>
     </Container>

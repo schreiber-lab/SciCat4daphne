@@ -1,4 +1,5 @@
 import { Box, Typography } from '@material-ui/core';
+import AddIcon from "@material-ui/icons/Add";
 import * as fullfacetsApi from '../../../api/fullfacets';
 import { Autocomplete } from '../../../components/Autocomplete';
 
@@ -23,10 +24,18 @@ const fetchKeywords = (params) => ({ loadedOptions = [] }) => {
 };
 
 const renderOption = (option) => {
-  return (
+  return !option?.isCreatableOption ? (
     <Box clone width="100%" overflow="hidden">
       <Typography>{option?._id}</Typography>
     </Box>
+  ) : !option?.inputValue ? null : (
+    <>
+      <Box display="flex" mr={1}>
+        <AddIcon color="primary" />
+      </Box>
+
+      Add {option.inputValue}
+    </>
   );
 };
 
@@ -41,6 +50,7 @@ export const KeywordsAutocomplete = ({ params = {}, creatablePayload, ...props }
       getOptionLabel={((option) => option && option?._id)}
       getOptionValue={(option) => option?._id}
       getOptionSelected={(option, value) => option?._id === value?._id}
+      onCreate={(value) => Promise.resolve({ _id: value })}
 
       {...props}
     />

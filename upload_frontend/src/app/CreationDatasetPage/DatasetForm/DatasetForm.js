@@ -1,13 +1,12 @@
 import { Grid, MenuItem } from "@material-ui/core";
-import { TextField } from "../../../components/TextField";
+import { DatePicker, TextField } from "../../../components";
 import { Metadata } from "../../../components/Metadata";
 import { WarningBox } from "../../../components/WarningBox";
 import { KeywordsAutocomplete } from "./KeywordsAutocomplete";
-import { TechniquesAutocomplete } from "./TechniquesAutocomplete";
+import { TechniquesAutocomplete } from "../../../modules/techniques/AddTechniqueModal/TechniquesAutocomplete/TechniquesAutocomplete";
 import { InstrumentsAutocomplete } from "./InstrumentsAutocomplete";
 import { SamplesAutocomplete } from "./SamplesAutocomplete";
 import { ProposalsAutocomplete } from "./ProposalsAutocomplete";
-
 
 export const DatasetForm = () => {
   return (
@@ -23,7 +22,7 @@ export const DatasetForm = () => {
           }}
         />
       </Grid>
-
+     
       <Grid item sm={2} md={4}>
         <TextField
           required
@@ -38,7 +37,7 @@ export const DatasetForm = () => {
       </Grid>
 
       <Grid item sm={2} md={4}>
-        <TextField
+        <DatePicker
           required
           fullWidth
           name="creationTime"
@@ -67,9 +66,9 @@ export const DatasetForm = () => {
         />
       </Grid>
 
-
       <Grid item sm={2} md={4}>
-        <InstrumentsAutocomplete  name="instruments"/>
+        <InstrumentsAutocomplete name="instruments" />
+        {/* <InstrumentsAutocomplete name="instrumentId" /> */}
       </Grid>
 
       <Grid item sm={2} md={4}>
@@ -87,19 +86,19 @@ export const DatasetForm = () => {
       </Grid>
 
       <Grid item sm={2} md={4}>
-        <KeywordsAutocomplete multiple name="keywords" />
+        <KeywordsAutocomplete isCreatable multiple name="keywords" />
       </Grid>
 
       <Grid item sm={2} md={4}>
-        <TechniquesAutocomplete multiple name="techniques"/>
+        <TechniquesAutocomplete isCreatable multiple name="techniques" />
       </Grid>
 
       <Grid item sm={2} md={4}>
-        <ProposalsAutocomplete  name="proposals"/>
+        <ProposalsAutocomplete name="proposalId" />
       </Grid>
 
       <Grid item sm={2} md={4}>
-        <SamplesAutocomplete  name="samples"/>
+        <SamplesAutocomplete name="sampleId" />
       </Grid>
 
       <Grid item sm={2} md={4}>
@@ -132,7 +131,12 @@ export const DatasetForm = () => {
           placeholder="Enter description..."
         />
       </Grid>
-      
+
+      {/* <Grid item sm={2} md={4}>
+        <MaterialsAutocomplete name="material_id" />
+      </Grid> */}
+
+
       <Grid item>
         <Metadata baseKey="scientificMetadata" title="Metadata" />
       </Grid>

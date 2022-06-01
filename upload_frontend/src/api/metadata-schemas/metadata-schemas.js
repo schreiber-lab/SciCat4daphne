@@ -3,10 +3,12 @@ import { removeEmpty } from "../../helpers/removeEmpty";
 
 export const transformMetadataSchemaRequest = (metadataSchema) => {
   return Object.entries(metadataSchema).reduce(
-    (scientificMetadata, [ name, metadata ]) => {
-      const filledFields = metadata.fields ? removeEmpty(metadata.fields, (value) => !value) : {};
+    (scientificMetadata, [name, metadata]) => {
+      const filledFields = metadata.fields
+        ? removeEmpty(metadata.fields, (value) => !value)
+        : {};
       const isValid = metadata.isActive && Object.keys(filledFields).length;
-      
+
       return Object.assign(
         scientificMetadata,
         isValid ? { [name]: filledFields } : {}

@@ -35,7 +35,7 @@ export const SamplesAutocomplete = ({ params = {}, creatablePayload, ...props })
   return (
     <Autocomplete
       isAsync
-      label="Samples"
+      label="Sample"
       placeholder="Search and add sample..."
       onNeedFetch={fetchSamples(params)}
       renderOption={renderOption}
