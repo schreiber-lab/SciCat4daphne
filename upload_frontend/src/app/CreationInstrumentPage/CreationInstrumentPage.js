@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import { Button, Typography, Container, makeStyles } from "@material-ui/core";
 import { useForm, FormProvider } from "react-hook-form";
 import { preventDefault } from "../../helpers/preventDefault";
@@ -13,8 +13,8 @@ const defaultValues = {
   customMetadata: "facility::",
 };
 
-const useStyles = makeStyles(({spacing}) => ({
-  root:{
+const useStyles = makeStyles(({ spacing }) => ({
+  root: {
     paddingTop: spacing(2),
     paddingBottom: spacing(2),
   },
@@ -23,28 +23,25 @@ const useStyles = makeStyles(({spacing}) => ({
   },
   footer: {
     display: "flex",
-    justifyContent: "flex-end"
-
-  }
+    justifyContent: "flex-end",
+  },
 }));
 
 export const CreationInstrumentPage = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   const form = useForm({
     defaultValues,
     resolver: yupResolver(validationSchema),
   });
 
   const handleSubmit = (data) => {
-    instrumentsApi
-      .createInstrument(data)
-      .then((data) => {
-        dispatch(addInstrument(data));
-        navigate("/instruments")
-      })
+    instrumentsApi.createInstrument(data).then((data) => {
+      dispatch(addInstrument(data));
+      navigate("/instruments");
+    });
   };
 
   return (
@@ -62,9 +59,9 @@ export const CreationInstrumentPage = () => {
         </FormProvider>
 
         <footer className={classes.footer}>
-        <Button type="submit" color="primary" variant="contained">
-          Add instrument
-        </Button>
+          <Button type="submit" color="primary" variant="contained">
+            Add instrument
+          </Button>
         </footer>
       </form>
     </Container>

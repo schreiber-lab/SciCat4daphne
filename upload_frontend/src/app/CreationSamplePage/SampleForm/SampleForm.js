@@ -1,4 +1,4 @@
-import { Grid, Box, Divider } from "@material-ui/core";
+import { Grid, Box } from "@material-ui/core";
 import { TextField } from "../../../components/TextField";
 import { Metadata } from "../../../components/Metadata";
 

@@ -1,5 +1,4 @@
-import { createContext, useCallback, useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { createContext, useCallback, useRef, useState } from 'react';
 import { ModalBase } from './ModalBase';
 
 export const ModalsContext = createContext({
@@ -7,7 +6,6 @@ export const ModalsContext = createContext({
 });
 
 export const ModalsProvider = ({ children }) => {
-  const navigate = useNavigate();
   const modalsCount = useRef(0);
   const [ modals, setModals ] = useState([]);
 
