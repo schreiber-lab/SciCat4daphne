@@ -9,7 +9,6 @@ export const Row = ({ field, schema, baseKey }) => {
   };
 
   if (schema.fixed_value_entries) {
-    console.log(field.key_name, schema.type);
     return (
       <FixedValueEntriesAutocomplete
         {...fieldProps}

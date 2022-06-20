@@ -36,7 +36,7 @@ export const MDSchemaKeyForm = () => {
       >
         <MenuItem value="string">string</MenuItem>
         <MenuItem value="number">number</MenuItem>
-        <MenuItem value="boolean">list</MenuItem>
+        <MenuItem value="list">list</MenuItem>
         <MenuItem value="boolean">boolean</MenuItem>
       </TextField>
 

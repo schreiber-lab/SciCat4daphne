@@ -14,7 +14,7 @@ const defaultValues = {
   key_name: null,
   type: null,
   unit: null,
-  allowed: null,
+  allowed: [],
   required: false,
   scan_ref: false,
   changes_likely: false,

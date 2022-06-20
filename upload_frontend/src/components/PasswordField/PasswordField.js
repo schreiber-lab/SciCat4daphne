@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import { InputAdornment, IconButton, Tooltip } from '@material-ui/core';
-import KeyboardCapslockIcon from '@material-ui/icons/KeyboardCapslock';
-import VisibilityOffOutlinedIcon from '@material-ui/icons/VisibilityOffOutlined';
-import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
+import { useEffect, useState } from "react";
+import { InputAdornment, IconButton, Tooltip } from "@material-ui/core";
+import KeyboardCapslockIcon from "@material-ui/icons/KeyboardCapslock";
+import VisibilityOffOutlinedIcon from "@material-ui/icons/VisibilityOffOutlined";
+import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
 import { TextField } from "../TextField";
 
 export const PasswordField = (props) => {
@@ -27,6 +27,7 @@ export const PasswordField = (props) => {
 
   return (
     <TextField
+      type={passwordIsVisible ? "text" : "password" }
       InputProps={{
         startAdornment: (
           <InputAdornment position="start" color="primary">
@@ -44,9 +45,9 @@ export const PasswordField = (props) => {
               onClick={togglePasswordVisibility}
             >
               {passwordIsVisible ? (
-                <VisibilityOffOutlinedIcon />
-              ) : (
                 <VisibilityOutlinedIcon />
+              ) : (
+                <VisibilityOffOutlinedIcon />
               )}
             </IconButton>
           </InputAdornment>

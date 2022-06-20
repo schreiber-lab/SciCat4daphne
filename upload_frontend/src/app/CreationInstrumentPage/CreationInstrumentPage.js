@@ -10,7 +10,6 @@ import { InstrumentForm, validationSchema } from "./InstrumentForm";
 
 const defaultValues = {
   name: null,
-  customMetadata: "facility::",
 };
 
 const useStyles = makeStyles(({ spacing }) => ({
