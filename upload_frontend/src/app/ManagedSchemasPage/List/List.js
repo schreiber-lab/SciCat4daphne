@@ -52,6 +52,8 @@ export const List = () => {
 
   useEffect(() => {
     dispatch(getFixedValueEntries({ schema_name: schema.schema_name }));
+
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -83,9 +85,9 @@ export const List = () => {
               <MetadataSchemasAutocomplete
                 disableClearable
                 value={schema}
-                params={{
-                  object_type: "sample",
-                }}
+                // params={{
+                //   object_type: "sample",
+                // }}
                 onChange={handleSchemaNameChange}
               />
             </Box>
@@ -100,7 +102,7 @@ export const List = () => {
               color="primary"
               className={classes.title}
             >
-              Fixed value entries of this schema name not found
+              Fixed value entries of this schema not found
             </Typography>
           ) : (
             <Box mb={3}>

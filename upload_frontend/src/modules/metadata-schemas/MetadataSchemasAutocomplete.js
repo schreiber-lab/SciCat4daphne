@@ -14,7 +14,6 @@ const fetchMetadaSchemas = (params) => ({ loadedOptions = [] }) => {
     return {
     //   hasMore: pagination.page < pagination.last_page && pagination.total > 0,
       options: loadedOptions.concat(data.filter(({ fixed_value_entries }) => fixed_value_entries)),
-      // options: loadedOptions.concat(data), 
     //   additionalData: {
     //     page: pagination.page
     //   }
