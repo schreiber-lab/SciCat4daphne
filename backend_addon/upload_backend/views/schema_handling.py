@@ -24,12 +24,15 @@ bp = flask.Blueprint("schema", __name__)  # , url_prefix='/auth')
 def get_metadata_schemas(object_type=None):
     """
     returns all stored schemas that of a given type
-    if no type is provided "dataset" will be used as default
     """
 
     db = flask.current_app.db
-
-    md_schemas = db.metadata_schemas.find({"schema_type": object_type}, {"_id": False})
+    if object_type:
+        md_schemas = db.metadata_schemas.find(
+            {"schema_type": object_type}, {"_id": False}
+        )
+    else:
+        md_schemas = db.metadata_schemas.find({}, {"_id": False})
     dyn_schemas = [md for md in md_schemas]
     return flask.jsonify(dyn_schemas)
 

@@ -7,7 +7,7 @@ class TypeSchema(Schema):
         required=False,
         description="specifies it this is a dataset, instrument, sample...",
         validate=lambda p: p in ("dataset", "instrument", "sample"),
-        missing="dataset",
+        missing=None,
     )
 
 

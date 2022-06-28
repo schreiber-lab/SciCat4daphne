@@ -5,7 +5,7 @@ def test_get_addons_metadata_schemas(client):
     # check that dataset is default object_type
     response = client.get("/addons/metadata_schemas")
     assert b'"schema_type":"dataset"' in response.data
-    assert b'"schema_type":"sample"' not in response.data
+    assert b'"schema_type":"sample"' in response.data
 
     # check this works for a given object_type
     response = client.get("/addons/metadata_schemas?object_type=sample")
