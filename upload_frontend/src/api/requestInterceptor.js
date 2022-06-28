@@ -8,6 +8,6 @@ export const requestInterceptor = (config) => {
     
     Authorization: config.headers?.Authorization || authToken,
   };
-
+  
   return config;
 };

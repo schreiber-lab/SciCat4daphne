@@ -1,4 +1,13 @@
 import { api } from "../api";
+import { transformMetadataSchemaRequest } from "../metadata-schemas";
+
+const transformInstrumentRequest = (instrument) => {
+  return {
+    ...instrument,
+
+    customMetadata: transformMetadataSchemaRequest(instrument.customMetadata)
+  };
+};
 
 export const getInstruments = (config) => {
   return api
@@ -25,7 +34,7 @@ export const getInstrument = (id, config) => {
 
 export const createInstrument = (data) => {
   return api
-    .post('/Instruments', data)
+    .post('/Instruments', transformInstrumentRequest(data))
     .then(({ data }) => {
       return data;
     })

@@ -1,17 +1,20 @@
 import { useState } from "react";
-import { Container, Box } from "@material-ui/core";
-import { LoginModal } from "../../components/Header/LoginModal";
+import { Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Container } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import backgroundPicture from "./img/main.jpg";
+import { LoginModal } from "../../components/Header/LoginModal";
+// import backgroundPicture from "./img/main.jpg";
 
 const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
-    background: `url(${backgroundPicture}) center / cover no-repeat`  
+    // background: `url(${backgroundPicture}) center / cover no-repeat`,
   },
 }));
 
 export const LoginPage = () => {
+  const isAuthenticated = useSelector(({ auth }) => auth.isAuthenticated);
   const classes = useStyles();
   const [open, setOpen] = useState(true);
 
@@ -20,8 +23,12 @@ export const LoginPage = () => {
   };
 
   return (
-    <Container component={Box} className={classes.root}>
-      <LoginModal isOpen={open} onClose={handleLoginModalClose} />
+    <Container className={classes.root}>
+      {isAuthenticated ? (
+        <Navigate to="/datasets" />
+      ) : (
+        <LoginModal isOpen={open} onClose={handleLoginModalClose} />
+      )}
     </Container>
   );
 };

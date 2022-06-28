@@ -1,4 +1,13 @@
 import { api } from "../api";
+import { transformMetadataSchemaRequest } from "../metadata-schemas";
+
+const transformSampleRequest = (sample) => {
+  return {
+    ...sample,
+
+    sampleCharacteristics: transformMetadataSchemaRequest(sample.sampleCharacteristics)
+  };
+};
 
 export const getSamples = (config) => {
   return api
@@ -24,7 +33,7 @@ export const getSample = (id, config) => {
 
 export const createSample = (data) => {
     return api
-      .post('/Samples', data)
+      .post('/Samples', transformSampleRequest(data))
       .then(({ data }) => {
         return data;
       })
@@ -46,7 +55,7 @@ export const createSample = (data) => {
 
   export const editSample = (sample, config) => {
     return api
-      .put(`/Samples/${sample.sampleId}`, sample, config)
+      .put(`/Samples/${sample.sampleId}`, transformSampleRequest(sample), config)
       .then(({ data }) => {
         return data;
       })

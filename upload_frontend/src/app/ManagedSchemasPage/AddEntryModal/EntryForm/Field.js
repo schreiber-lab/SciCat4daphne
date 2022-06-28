@@ -1,7 +1,7 @@
-import { fieldsMap } from "../../../../components/Metadata/Row/fiedsMap";
+import { fieldsByTypesMap } from "../../../../components/Metadata/Row/fieldsByTypesMap";
 
 export const Field = ({ field }) => {
-  return (fieldsMap[field.type] || fieldsMap.string)({
+  return (fieldsByTypesMap[field.type] || fieldsByTypesMap.string)({
     name: field.key_name,
     label: field.key_name,
     required: field.required,

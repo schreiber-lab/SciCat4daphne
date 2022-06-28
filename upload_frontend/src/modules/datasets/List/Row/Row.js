@@ -1,4 +1,5 @@
 import { TableCell, TableRow, Typography } from "@material-ui/core";
+import moment from "moment";
 
 export const Row = ({ dataset, onDatasetSelect, ...props }) => {
   const handleDatasetClick = () => {
@@ -29,7 +30,7 @@ export const Row = ({ dataset, onDatasetSelect, ...props }) => {
       {/* <TableCell align="right">{dataset.size}</TableCell> */}
       <TableCell align="right">
         <Typography color="primary" variant="subtitle2">
-          {new Date(dataset.creationTime).toLocaleDateString('en-US')}
+          {moment(dataset.creationTime).format('L')}
         </Typography>
       </TableCell>
       <TableCell align="right">{dataset.type}</TableCell>

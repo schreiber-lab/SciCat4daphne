@@ -86,7 +86,6 @@ export const LoginModal = ({ isOpen, onClose }) => {
               margin="dense"
               name="password"
               label="Password"
-              type="password"
               placeholder="Enter the password..."
             />
           </FormProvider>

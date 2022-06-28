@@ -12,25 +12,24 @@ import { Keys } from "../../../modules/metadata-schemas";
 import { TextField } from "../../../components/TextField";
 import { CreateMDSchemaKeyModal } from "../CreateMDSchemaKeyModal";
 import { Checkbox } from "../../../components/Checkbox";
+import { useModal } from "../../../components";
 
 
 export const MDSchemaForm = () => {
-  const [open, setOpen] = useState(false);
-  const { setValue, getValues, reset } = useFormContext();
+  const { getValues, reset } = useFormContext();
   const keys = useWatch({ name: "keys" });
-  // register("keys")
- 
+  const { openModal } = useModal();
   const addKey = (key) => {
     reset({ ...getValues(), "keys": (getValues().keys || []).concat(key) });
     console.log((getValues().keys || []).concat(key));
   };
 
   const openCreationModal = () => {
-    setOpen(true);
-  };
-
-  const handleCreationModalClose = () => {
-    setOpen(false);
+    openModal(CreateMDSchemaKeyModal, {
+      onModalResolved: (key) => {
+        addKey(key);
+      }
+    });
   };
 
   return (
@@ -82,12 +81,6 @@ export const MDSchemaForm = () => {
             >
               Add key
             </Button>
-
-            <CreateMDSchemaKeyModal
-              isOpen={open}
-              onResolve={addKey}
-              onClose={handleCreationModalClose}
-            />
           </Grid>
         </Grid>
       </Box>

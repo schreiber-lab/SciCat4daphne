@@ -99,6 +99,7 @@ export const Autocomplete = forwardRef(({
         setInputValue('');
 
         onCreate(creatableOption.inputValue).then((option) => {
+          console.log(option)
           if (!multiple) {
             setInputValue(getOptionLabel(option));
           }

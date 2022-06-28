@@ -8,24 +8,13 @@ import {
 } from "@material-ui/core";
 import { useForm, FormProvider } from "react-hook-form";
 import { preventDefault } from "../../../helpers/preventDefault";
-import { yupResolver } from "../../../utils/validation";
 import * as fixedValueEntriesApi from "../../../api/fixed-value-entries";
 // import {  addFixedValueEntries } from "../../../redux/fixed-value-entries/actions";
-import { EntryForm, validationSchema } from "./EntryForm";
-
-const defaultValues = {
-  material_id: null,
-  full_name: null,
-  formula: null,
-  composition: null,
-};
+import { EntryForm } from "./EntryForm";
 
 export const AddEntryModal = ({ isOpen, schemaName, onClose, onResolve }) => {
   // const dispatch = useDispatch();
-  const form = useForm({
-    defaultValues,
-    resolver: yupResolver(validationSchema),
-  });
+  const form = useForm();
 
   // const handleSubmit = (data) => {
   //   fixedValueEntriesApi

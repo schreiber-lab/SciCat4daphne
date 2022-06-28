@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
@@ -8,7 +8,7 @@ import {
   makeStyles,
   Grid,
 } from "@material-ui/core";
-import { useSnackbar } from "notistack"
+import { useSnackbar } from "notistack";
 import { useForm, FormProvider } from "react-hook-form";
 import { preventDefault } from "../../helpers/preventDefault";
 import { yupResolver } from "../../utils/validation";
@@ -17,7 +17,6 @@ import { validateMetadataSchema } from "../../api/metadata-schemas";
 import { addDataset } from "../../redux/datasets/actions";
 import { DatasetForm, validationSchema } from "./DatasetForm";
 import { SelectDatasetModal } from "../../modules/datasets/SelectDatasetModal";
-
 
 const defaultValues = {
   datasetName: null,
@@ -69,9 +68,12 @@ export const CreationDatasetPage = () => {
         });
       })
       .catch(() => {
-        enqueueSnackbar("Your dataset wasn't created. Check the data you entered.", {
-          variant: "error",
-        });
+        enqueueSnackbar(
+          "Your dataset wasn't created. Check the data you entered.",
+          {
+            variant: "error",
+          }
+        );
       });
   };
 
