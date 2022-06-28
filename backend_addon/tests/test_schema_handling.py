@@ -140,3 +140,42 @@ def test_post_addons_metadata_schemas_empty_schema(client, mongodb):
         "/addons/metadata_schemas", data=json.dumps(data), headers=headers
     )
     assert response.status_code == 422
+
+
+def test_fixed_value_metadata_schemas_post_get(client, mongodb):
+    """
+    check that schema can be added to the db and that invalid schema is rejected
+    """
+
+    mimetype = "application/json"
+    headers = {"Content-Type": mimetype, "Accept": mimetype}
+    data = {
+        "schema_name": "test_fixed_value_schema",
+        "schema_type": "dataset",
+        "fixed_value_entries": True,
+        "id_key": "key1",
+        "keys": [
+            {"key_name": "key1", "type": "string"},
+            {"key_name": "key2", "type": "number", "unit": "mm"},
+        ],
+    }
+
+    response = client.post(
+        "/addons/metadata_schemas", data=json.dumps(data), headers=headers
+    )
+    assert response.status_code == 200
+
+    data = {
+        "entries": [
+            {
+                "schema_name": "test_fixed_value_schema",
+                "key1": "test",
+                "key2": {"value": 13, "unit": "mm"},
+            },
+        ]
+    }
+
+    response = client.post(
+        "/addons/add_fixed_value_entries", data=json.dumps(data), headers=headers
+    )
+    assert response.status_code == 200

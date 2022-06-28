@@ -14,6 +14,27 @@ from .schema import metadata_schema  # , sample ,material
 # ~ raise RuntimeError(str(validator.errors))
 
 
+def _rework_keydict(keydict):
+    # todo :scan-ref check ignored for now
+    keydict.pop("scan_ref", None)
+
+    # remove "changes_likely" keys for cerberous
+    keydict.pop("changes_likely", None)
+
+    unit = keydict.pop("unit", None)
+    if unit is not None:
+        keydict = {
+            "required": keydict["required"],
+            "schema": {
+                "unit": {"allowed": [unit], "required": True},
+                "value": {"schema": keydict},
+            },
+            "type": "dict",
+        }
+
+    return keydict
+
+
 def _build_dataset_schema(schemas):
     ds_schema = dict()
     for s in schemas:
@@ -22,22 +43,7 @@ def _build_dataset_schema(schemas):
         for keydict in s["keys"]:
             key_name = keydict.pop("key_name")
 
-            # todo :scan-ref check ignored for now
-            keydict.pop("scan_ref", None)
-
-            # remove "changes_likely" keys for cerberous
-            keydict.pop("changes_likely", None)
-
-            unit = keydict.pop("unit", None)
-            if unit is not None:
-                keydict = {
-                    "required": keydict["required"],
-                    "schema": {
-                        "unit": {"allowed": [unit], "required": True},
-                        "value": {"schema": keydict},
-                    },
-                    "type": "dict",
-                }
+            keydict = _rework_keydict(keydict)
 
             sub_schema[key_name] = keydict
 
@@ -82,7 +88,11 @@ def _build_entry_schema(schema):
         validator_schema[key["key_name"]] = {
             "required": key["required"],
             "type": key["type"],
+            "unit": key["unit"],
         }
+        validator_schema[key["key_name"]] = _rework_keydict(
+            validator_schema[key["key_name"]]
+        )
         validator_schema["schema_name"] = {"type": "string", "required": True}
 
     return validator_schema
