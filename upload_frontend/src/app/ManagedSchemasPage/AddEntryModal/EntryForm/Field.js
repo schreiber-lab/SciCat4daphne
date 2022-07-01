@@ -2,9 +2,9 @@ import { fieldsByTypesMap } from "../../../../components/Metadata/Row/fieldsByTy
 
 export const Field = ({ field }) => {
   return (fieldsByTypesMap[field.type] || fieldsByTypesMap.string)({
-    name: field.key_name,
+    name: `entries[0].${field.key_name}`,
     label: field.key_name,
     required: field.required,
-    field
+    field,
   });
 };

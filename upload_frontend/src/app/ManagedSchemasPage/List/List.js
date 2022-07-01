@@ -96,6 +96,7 @@ export const List = () => {
               <AddEntryButton schemaName={schema.schema_name} />
             </Box>
           </Box>
+
           {!fixedValueEntries.entries.length ? (
             <Typography
               align="center"
@@ -111,7 +112,7 @@ export const List = () => {
                   <TableHead>
                     <TableRow>
                       {entriesProps.map((property) => (
-                        <TableCell className={classes.tableHeaderCell}>
+                        <TableCell key={property} className={classes.tableHeaderCell}>
                           {property}
                         </TableCell>
                       ))}

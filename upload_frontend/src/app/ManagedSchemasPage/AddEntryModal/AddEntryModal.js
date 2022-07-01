@@ -14,7 +14,15 @@ import { EntryForm } from "./EntryForm";
 
 export const AddEntryModal = ({ isOpen, schemaName, onClose, onResolve }) => {
   // const dispatch = useDispatch();
-  const form = useForm();
+  const form = useForm({
+    defaultValues: {
+      entries: [
+        {
+          schema_name: schemaName,
+        },
+      ],
+    },
+  });
 
   // const handleSubmit = (data) => {
   //   fixedValueEntriesApi

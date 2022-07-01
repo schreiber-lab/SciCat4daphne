@@ -5,7 +5,17 @@ import { TextField } from "../../TextField";
 import { NumberMaskField } from "../../NumberMaskField";
 
 export const fieldsByTypesMap = {
-  string: ({ field, ...props }) => {
+  string: ({ name, field, ...props }) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const formContext = useFormContext();
+
+    if (field.unit) {
+      formContext.setValue(name + ".unit", field.unit);
+      //{"entries": [{qq: { unit:"mm"} }]}
+      //{"entries": [{qq: { unit:"mm", value: 5} }]}
+      //{"entries": [{qq: "value"]}
+    }
+
     const textFieldProps = !field.allowed
       ? {}
       : {
@@ -22,6 +32,7 @@ export const fieldsByTypesMap = {
         fullWidth
         variant="outlined"
         margin="dense"
+        name={field.unit ? name + ".value" : name}
         InputProps={
           !field.unit
             ? null
@@ -41,16 +52,10 @@ export const fieldsByTypesMap = {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const formContext = useFormContext();
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    // useEffect(() => {
-    //   if (field.unit) {
-    //     formContext.setValue(name + ".unit", field.unit);
-    //   }
-    // }, []);
     if (field.unit) {
       formContext.setValue(name + ".unit", field.unit);
     }
-   
+
     return (
       <NumberMaskField
         fullWidth
