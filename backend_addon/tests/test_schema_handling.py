@@ -142,7 +142,7 @@ def test_post_addons_metadata_schemas_empty_schema(client, mongodb):
     assert response.status_code == 422
 
 
-def test_fixed_value_metadata_schemas_post_get(client, mongodb):
+def test_fixed_value_metadata_schemas_post_get1(client, mongodb):
     """
     check that schema can be added to the db and that invalid schema is rejected
     """
@@ -178,4 +178,26 @@ def test_fixed_value_metadata_schemas_post_get(client, mongodb):
     response = client.post(
         "/addons/add_fixed_value_entries", data=json.dumps(data), headers=headers
     )
+    assert response.status_code == 200
+
+
+def test_fixed_value_metadata_schemas_post_get2(client, mongodb, use_prepop_db):
+
+    mimetype = "application/json"
+    headers = {"Content-Type": mimetype, "Accept": mimetype}
+
+    data = {
+        "entries": [
+            {
+                "schema_name": "test schema200",
+                "test key": {"unit": "mm", "value": 234},
+                "test key56": "asfdasdf",
+            }
+        ]
+    }
+
+    response = client.post(
+        "/addons/add_fixed_value_entries", data=json.dumps(data), headers=headers
+    )
+
     assert response.status_code == 200

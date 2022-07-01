@@ -166,7 +166,16 @@ def add_fixed_value_entries(entries=None):
         try:
             getattr(db, db_collection).insert_one(entry)
         except (Exception, BaseException) as e:
-            return json.dumps({"error": "error during db insert"}), HTTPStatus.FORBIDDEN
+            return (
+                json.dumps(
+                    {
+                        "error": "error during db insert",
+                        "message": str(e),
+                        "traceback": str(traceback.format_exc()),
+                    }
+                ),
+                HTTPStatus.FORBIDDEN,
+            )
 
         # pop _id in case it entered
         entry.pop("_id", None)
