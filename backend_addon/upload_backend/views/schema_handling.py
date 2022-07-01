@@ -24,12 +24,15 @@ bp = flask.Blueprint("schema", __name__)  # , url_prefix='/auth')
 def get_metadata_schemas(object_type=None):
     """
     returns all stored schemas that of a given type
-    if no type is provided "dataset" will be used as default
     """
 
     db = flask.current_app.db
-
-    md_schemas = db.metadata_schemas.find({"schema_type": object_type}, {"_id": False})
+    if object_type:
+        md_schemas = db.metadata_schemas.find(
+            {"schema_type": object_type}, {"_id": False}
+        )
+    else:
+        md_schemas = db.metadata_schemas.find({}, {"_id": False})
     dyn_schemas = [md for md in md_schemas]
     return flask.jsonify(dyn_schemas)
 
@@ -163,7 +166,16 @@ def add_fixed_value_entries(entries=None):
         try:
             getattr(db, db_collection).insert_one(entry)
         except (Exception, BaseException) as e:
-            return json.dumps({"error": "error during db insert"}), HTTPStatus.FORBIDDEN
+            return (
+                json.dumps(
+                    {
+                        "error": "error during db insert",
+                        "message": str(e),
+                        "traceback": str(traceback.format_exc()),
+                    }
+                ),
+                HTTPStatus.FORBIDDEN,
+            )
 
         # pop _id in case it entered
         entry.pop("_id", None)
