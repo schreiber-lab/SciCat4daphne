@@ -50,7 +50,6 @@ export const CreationDatasetPage = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const form = useForm({
     defaultValues,
     resolver: yupResolver(validationSchema),
@@ -75,6 +74,7 @@ export const CreationDatasetPage = () => {
           }
         );
       });
+    console.log(data.scientificMetadata)
   };
 
   const openSelectDatasetModal = () => {

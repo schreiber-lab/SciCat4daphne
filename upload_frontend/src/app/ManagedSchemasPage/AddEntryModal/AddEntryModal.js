@@ -1,4 +1,4 @@
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   Button,
   Dialog,
@@ -9,33 +9,42 @@ import {
 import { useForm, FormProvider } from "react-hook-form";
 import { preventDefault } from "../../../helpers/preventDefault";
 import * as fixedValueEntriesApi from "../../../api/fixed-value-entries";
-// import {  addFixedValueEntries } from "../../../redux/fixed-value-entries/actions";
+import {  addFixedValueEntry } from "../../../redux/fixed-value-entries/actions";
 import { EntryForm } from "./EntryForm";
 
 export const AddEntryModal = ({ isOpen, schemaName, onClose, onResolve }) => {
-  // const dispatch = useDispatch();
-  const form = useForm();
+  const dispatch = useDispatch();
 
-  // const handleSubmit = (data) => {
-  //   fixedValueEntriesApi
-  //   .createFixedValueEntry(data)
-  //   .then((data) => {
-  //     dispatch(addFixedValueEntries(data));
-  //     onClose();
-  //   })
-  //   .catch(() => {});
-  // };
 
+  const form = useForm({
+    defaultValues: {
+      entries: [
+        {
+          schema_name: schemaName,
+        },
+      ],
+    },
+  });
+
+  const handleSubmit = (data) => {
+    fixedValueEntriesApi
+    .createFixedValueEntry(data)
+    .then((data) => {
+      dispatch(addFixedValueEntry(data));
+      onClose();
+      console.log(data)
+    })
+  };
   // const handleSubmit = (data) => {
   //   onResolve(data);
   //   onClose();
   // };
 
-  const handleSubmit = (data) => {
-    fixedValueEntriesApi.createFixedValueEntry(data).then(() => {
-      onClose();
-    });
-  };
+  // const handleSubmit = (data) => {
+  //   fixedValueEntriesApi.createFixedValueEntry(data).then(() => {
+  //     onClose();
+  //   });
+  // };
 
   return (
     <Dialog open={isOpen} onClose={onClose}>

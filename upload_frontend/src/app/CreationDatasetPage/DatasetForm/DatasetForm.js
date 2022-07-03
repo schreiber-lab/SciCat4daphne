@@ -138,7 +138,7 @@ export const DatasetForm = () => {
 
 
       <Grid item>
-        <Metadata baseKey="scientificMetadata" title="Metadata" />
+        <Metadata baseKey="scientificMetadata" objectType="dataset" title="Metadata" />
       </Grid>
     </Grid>
   );

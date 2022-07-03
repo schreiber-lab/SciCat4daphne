@@ -5,7 +5,6 @@ import { Autocomplete } from "../../components/Autocomplete";
 const fetchFixedValueEntries =
   (params) =>
   ({ loadedOptions = [] }) => {
-    console.log(loadedOptions);
     return fixedValueEntriesApi
       .getFixedValueEntries({
         params: {
@@ -33,7 +32,7 @@ export const FixedValueEntriesAutocomplete = ({ keyName, params = {}, ...props }
       placeholder="Search entry..."
       onNeedFetch={fetchFixedValueEntries(params)}
       getOptionLabel={(option) => option && option[keyName]}
-      getOptionValue={(option) => option[keyName]}
+      getOptionValue={(option) => option?.[keyName] || null}
       getOptionSelected={(option, value) =>
         option[keyName] === value[keyName]
       }
