@@ -59,7 +59,7 @@ export const routes = ({ isAuthenticated }) => [
     element: isAuthenticated ? <CreationMDSchemaPage /> : <ForbiddenPage />,
   },
   {
-    path: "/managed-schemas",
+    path: "/autocomplete-schemas",
     element: isAuthenticated ? <ManagedSchemasPage /> : <ForbiddenPage />,
   },
   {

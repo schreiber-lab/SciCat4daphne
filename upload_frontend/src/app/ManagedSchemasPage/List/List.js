@@ -57,8 +57,8 @@ export const List = () => {
   }, []);
 
   useEffect(() => {
-    if (fixedValueEntries.entries.length) {
-      setEntriesProps(Object.keys(fixedValueEntries.entries[0]));
+    if (fixedValueEntries.length) {
+      setEntriesProps(Object.keys(fixedValueEntries[0]));
     }
   }, [fixedValueEntries]);
 
@@ -96,7 +96,8 @@ export const List = () => {
               <AddEntryButton schemaName={schema.schema_name} />
             </Box>
           </Box>
-          {!fixedValueEntries.entries.length ? (
+
+          {!fixedValueEntries.length ? (
             <Typography
               align="center"
               color="primary"
@@ -111,7 +112,7 @@ export const List = () => {
                   <TableHead>
                     <TableRow>
                       {entriesProps.map((property) => (
-                        <TableCell className={classes.tableHeaderCell}>
+                        <TableCell key={property} className={classes.tableHeaderCell}>
                           {property}
                         </TableCell>
                       ))}
@@ -119,7 +120,7 @@ export const List = () => {
                   </TableHead>
 
                   <TableBody>
-                    {fixedValueEntries.entries?.map((entry, index) => (
+                    {fixedValueEntries.map((entry, index) => (
                       <Row
                         key={index}
                         field={entry}

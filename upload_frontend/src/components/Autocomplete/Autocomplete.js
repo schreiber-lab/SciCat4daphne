@@ -172,7 +172,7 @@ export const Autocomplete = forwardRef(({
   };
 
   const handleClear = () => {
-    handleChange(null, null);
+    // handleChange(null, null);
     setInputValue('');
   };
 
