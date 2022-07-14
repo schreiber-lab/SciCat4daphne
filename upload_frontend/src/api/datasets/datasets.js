@@ -2,6 +2,7 @@ import { api } from "../api";
 import { transformMetadataSchemaRequest } from "../metadata-schemas";
 
 const transformDatasetRequest = (dataset) => {
+  console.log(dataset.scientificMetadata)
   return {
     ...dataset,
 

@@ -123,11 +123,11 @@ export const Menu = () => {
             {/* </Box> */}
               <ListItemText primary="Create new MD Schema" />
             </ListItem>
-            <ListItem button component={Link} to="/managed-schemas">
+            <ListItem button component={Link} to="/autocomplete-schemas">
             {/* <Box color="primary.main"> */}
             <SettingsApplicationsIcon/>
             {/* </Box> */}
-              <ListItemText primary="Managed schemas" />
+              <ListItemText primary="Autocomplete schemas" />
             </ListItem>
           </List>
         </Box>

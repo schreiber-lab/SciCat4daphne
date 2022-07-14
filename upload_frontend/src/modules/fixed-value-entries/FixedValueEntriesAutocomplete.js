@@ -1,11 +1,12 @@
+import { useFormContext } from "react-hook-form";
 import { Box, Typography } from "@material-ui/core";
 import * as fixedValueEntriesApi from "../../api/fixed-value-entries";
 import { Autocomplete } from "../../components/Autocomplete";
 
+
 const fetchFixedValueEntries =
   (params) =>
   ({ loadedOptions = [] }) => {
-    console.log(loadedOptions);
     return fixedValueEntriesApi
       .getFixedValueEntries({
         params: {
@@ -25,15 +26,24 @@ const fetchFixedValueEntries =
       });
   };
 
-export const FixedValueEntriesAutocomplete = ({ keyName, params = {}, ...props }) => {
+export const FixedValueEntriesAutocomplete = ({ baseKey, keyName, params = {}, ...props }) => {
+  const { getValues, setValue } = useFormContext();
+
+  const handleChange = (entry) => {
+    Object.keys(getValues(baseKey)).forEach((key) => {
+      setValue(`${baseKey}.${key}`, entry[key]);
+    }, {});
+  };
+
   return (
     <Autocomplete
       isAsync
       label={keyName}
       placeholder="Search entry..."
       onNeedFetch={fetchFixedValueEntries(params)}
+      onChange={handleChange}
       getOptionLabel={(option) => option && option[keyName]}
-      getOptionValue={(option) => option[keyName]}
+      getOptionValue={(option) => option?.[keyName] || null}
       getOptionSelected={(option, value) =>
         option[keyName] === value[keyName]
       }

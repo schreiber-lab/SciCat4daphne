@@ -15,7 +15,7 @@ export const createFixedValueEntry = (data) => {
   return api2
     .post("/addons/add_fixed_value_entries", data)
     .then(({ data }) => {
-      return data;
+      return JSON.parse(data).entries[0];
     })
     .catch((data) => {
       throw data;
