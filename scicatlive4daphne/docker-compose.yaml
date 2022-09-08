@@ -39,16 +39,16 @@ services:
       - ./config/catanie/config.json:/usr/share/nginx/html/assets/config.json 
       - ./config/catanie/site-logo.png:/usr/share/nginx/html/assets/images/site-logo.png
       
-  search-api:
-    image: dacat/panosc-search-api:latest
-    depends_on: 
-      - catamel
-    labels:
-      - "traefik.http.routers.panosc-search-api.rule=PathPrefix(`/panosc-api`, `/panosc-explorer`)"
-      - "traefik.http.routers.panosc-search-api.entrypoints=web"
-    environment:
-      BASE_URL: "http://catamel:3000/api/v3"
-      FACILITY: "SAMPLE-SITE"
+  #~ search-api:
+    #~ image: dacat/panosc-search-api:latest
+    #~ depends_on: 
+      #~ - backend
+    #~ labels:
+      #~ - "traefik.http.routers.panosc-search-api.rule=PathPrefix(`/panosc-api`, `/panosc-explorer`)"
+      #~ - "traefik.http.routers.panosc-search-api.entrypoints=web"
+    #~ environment:
+      #~ BASE_URL: "http://backend:3000/api/v3"
+      #~ FACILITY: "SAMPLE-SITE"
 
   upload-frontend:
     image: pithan/upload_frontend:latest
