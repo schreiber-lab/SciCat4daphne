@@ -26,17 +26,16 @@ services:
       - "traefik.http.routers.catamel.rule=PathPrefix(`/api`, `/auth`, `/explorer`)"
       - "traefik.http.routers.catamel.entrypoints=web"
       
-  catanie:
-    #image: dacat/catanie:latest
-    image: dacat/catanie:2431284a58361320b334162def0323e5e017aaeaproduction
+  frontend:
+    image: ghcr.io/scicatproject/frontend:latest
     depends_on:
       - catamel
     labels:
-      - "traefik.http.routers.catanie.rule=PathPrefix(`/`)"
-      - "traefik.http.routers.catanie.entrypoints=web"
+      - "traefik.http.routers.frontend.rule=PathPrefix(`/`)"
+      - "traefik.http.routers.frontend.entrypoints=web"
     volumes:
-      - ./config/catanie/config.json:/usr/share/nginx/html/assets/config.json 
-      - ./config/catanie/site-logo.png:/usr/share/nginx/html/assets/images/site-logo.png
+      - ./config/frontend/config.json:/usr/share/nginx/html/assets/config.json 
+      - ./config/frontend/site-logo.png:/usr/share/nginx/html/assets/images/site-logo.png
       
   #~ search-api:
     #~ image: dacat/panosc-search-api:latest
@@ -83,7 +82,7 @@ services:
         - "ME_CONFIG_SITE_BASEURL=/mongodb/"
     depends_on:
         - mongodb
-        - catanie
+        - frontend
     labels:
        - traefik.http.routers.mongo-express.rule=PathPrefix(`/mongodb`)
        - traefik.http.services.mongo-express.loadbalancer.server.port=8081
