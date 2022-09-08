@@ -14,22 +14,23 @@ services:
     volumes:
       - "/srv/mongodb:/bitnami/mongodb"     # check that is mount exists on local filesystem
 
-  catamel:
-    image: dacat/catamel:latest
+  backend:
+    image: ghcr.io/scicatproject/backend-next:latest
     depends_on:
       - mongodb
     volumes:
-      - ./config/catamel/config.local.js:/home/node/app/server/config.local.js
-      - ./config/catamel/functionalAccounts.json:/home/node/app/server/functionalAccounts.json
+      - ./config/backend/config.env:/home/node/app/.env
+     # - ./config/backend/config.local.js:/home/node/app/server/config.local.js
+      - ./config/backend/functionalAccounts.json:/home/node/app/functionalAccounts.json
 
     labels:
-      - "traefik.http.routers.catamel.rule=PathPrefix(`/api`, `/auth`, `/explorer`)"
-      - "traefik.http.routers.catamel.entrypoints=web"
+      - "traefik.http.routers.backend.rule=PathPrefix(`/api`, `/auth`, `/explorer`)"
+      - "traefik.http.routers.backend.entrypoints=web"
       
   frontend:
     image: ghcr.io/scicatproject/frontend:latest
     depends_on:
-      - catamel
+      - backend
     labels:
       - "traefik.http.routers.frontend.rule=PathPrefix(`/`)"
       - "traefik.http.routers.frontend.entrypoints=web"
