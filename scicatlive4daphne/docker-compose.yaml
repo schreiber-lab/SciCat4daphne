@@ -15,7 +15,9 @@ services:
       - "/srv/mongodb:/bitnami/mongodb"     # check that is mount exists on local filesystem
 
   backend:
-    image: ghcr.io/scicatproject/backend-next:latest
+    #image: ghcr.io/scicatproject/backend-next:latest
+    build:
+      context: https://github.com/SciCatProject/scicat-backend-next.git#SWAP-2755
     depends_on:
       - mongodb
     volumes:
