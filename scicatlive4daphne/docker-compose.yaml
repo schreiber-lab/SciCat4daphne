@@ -50,7 +50,9 @@ services:
       FACILITY: "SAMPLE-SITE"
 
   upload-frontend:
-    image: pithan/upload_frontend:latest
+    #image: pithan/upload_frontend:latest
+    build:
+      context: https://github.com/schreiber-lab/scicat-schema-extension.git#main:frontend
     volumes:
       - ./config/upload/env.js:/usr/share/nginx/html/env.js
     labels:
@@ -64,7 +66,9 @@ services:
       - traefik.http.routers.upload-frontend.middlewares=upload-frontend-stripprefix@docker
 
   backend-addon:
-    image: pithan/backend_addon:latest
+    #image: pithan/backend_addon:latest
+    build:
+      context: https://github.com/schreiber-lab/scicat-schema-extension.git#main:backend
     depends_on:
       - mongodb
     labels:
