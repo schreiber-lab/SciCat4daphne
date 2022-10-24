@@ -54,16 +54,11 @@ services:
     build:
       context: https://github.com/schreiber-lab/scicat-schema-extension.git#main:frontend
     volumes:
-      - ./config/upload/env.js:/usr/share/nginx/html/env.js
+      - ./config/upload/env.js:/usr/share/nginx/html/upload/env.js
     labels:
     # Match on the hostname and the path
       - traefik.http.routers.upload-frontend.rule=PathPrefix(`/upload`)
 
-    # Define a new middleware to strip the URL prefix before sending it to nginx
-      - traefik.http.middlewares.upload-frontend-stripprefix.stripprefix.prefixes=/upload
-
-    # tell Traefik which middlewares we want to use on this container
-      - traefik.http.routers.upload-frontend.middlewares=upload-frontend-stripprefix@docker
 
   backend-addon:
     #image: pithan/backend_addon:latest
