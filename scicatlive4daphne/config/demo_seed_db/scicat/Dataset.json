@@ -1,0 +1,95 @@
+[
+  {
+    "_id": "softmatter/I-20220123/perovskite/FAPI",
+    "owner": "my_lab",
+    "contactEmail": "someone@student.my-uni.dee",
+    "sourceFolder": "gpfs\\current\\raw",
+    "creationTime": {
+      "$date": "2022-10-07T00:08:00Z"
+    },
+    "type": "raw",
+    "keywords": [
+      "PEROVSKITE",
+      "GIWAXS"
+    ],
+    "description": null,
+    "datasetName": "FAPI_4",
+    "classification": "IN=medium,AV=low,CO=low",
+    "version": "3.1.0",
+    "ownerGroup": "my_lab",
+    "createdBy": "admin",
+    "history": [],
+    "datasetlifecycle": {
+      "archivable": true,
+      "retrievable": false,
+      "publishable": false,
+      "archiveRetentionTime": {
+        "$date": "2032-10-08T00:00:00Z"
+      },
+      "dateOfPublishing": {
+        "$date": "2025-10-08T00:00:00Z"
+      },
+      "isOnCentralDisk": true,
+      "archiveStatusMessage": "datasetCreated",
+      "retrieveStatusMessage": "",
+      "retrieveIntegrityCheck": false
+    },
+    "createdAt": {
+      "$date": "2022-10-08T00:13:04.363Z"
+    },
+    "updatedAt": {
+      "$date": "2022-10-08T00:13:04.368Z"
+    },
+    "techniques": [
+      {
+        "pid": "GIWAXS",
+        "name": "2D grazing-incidence wide-angle scattering"
+      }
+    ],
+    "group": "my_lab",
+    "instruments": "desy_p08",
+    "proposalId": "I-20220123",
+    "sampleId": "perovskite",
+    "scientificMetadata": {
+      "measurement": {
+        "measurement_type": "beamtime"
+      },
+      "insitu_perovskite": {
+        "spinning_scan": 579,
+        "annealing_scan": 580,
+        "incidence_angle_scan": 585
+      },
+      "beamtime": {
+        "beamtime_id": "I-20220123",
+        "date_start": "05.10.2022",
+        "date_end": "10.10.2022",
+        "beamline": "P08",
+        "facility": "DESY PETRA III"
+      },
+      "participants": [
+        {
+          "name": "Erika Musterfrau "
+        }
+      ],
+      "local_contact": [
+        {
+          "name": "My Contact",
+          "email": "someonem@desy.dee",
+          "instument": "P45"
+        }
+      ],
+      "perovskite_sample": {
+        "A": "FA",
+        "B": "Pb",
+        "X": "I",
+        "dimensionality": "3d",
+        "concentration": "1.41mol",
+        "solvent": "DMF : DMSO (4:1)",
+        "gas_quench": "N2",
+        "DRS_data_available": "yes",
+        "spincoating parameters": "3000rpm 150s",
+        "annealing parameters": "500s 150W 10s 85W"
+      }
+    }
+  }
+]

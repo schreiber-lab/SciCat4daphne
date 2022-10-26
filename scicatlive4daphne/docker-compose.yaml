@@ -10,9 +10,10 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       
   mongodb:
-    image: bitnami/mongodb:4.2
+    image: mongo:4.2-bionic
     volumes:
-      - "/srv/mongodb:/bitnami/mongodb"     # check that is mount exists on local filesystem
+      - "/srv/mongodb/data:/data/db" # check that is mount exists on local filesystem at least until mongodb
+      - "./config/demo_seed_db:/docker-entrypoint-initdb.d"  # comment this line if you do not wish to populate a demo db
 
   catamel:
     image: dacat/catamel:latest
@@ -50,21 +51,19 @@ services:
       FACILITY: "SAMPLE-SITE"
 
   upload-frontend:
-    image: pithan/upload_frontend:latest
+    #image: pithan/upload_frontend:latest
+    build:
+      context: https://github.com/schreiber-lab/scicat-schema-extension.git#main:frontend
     volumes:
-      - ./config/upload/env.js:/usr/share/nginx/html/env.js
+      - ./config/upload/env.js:/usr/share/nginx/html/upload/env.js
     labels:
     # Match on the hostname and the path
       - traefik.http.routers.upload-frontend.rule=PathPrefix(`/upload`)
 
-    # Define a new middleware to strip the URL prefix before sending it to nginx
-      - traefik.http.middlewares.upload-frontend-stripprefix.stripprefix.prefixes=/upload
-
-    # tell Traefik which middlewares we want to use on this container
-      - traefik.http.routers.upload-frontend.middlewares=upload-frontend-stripprefix@docker
-
   backend-addon:
-    image: pithan/backend_addon:latest
+    #image: pithan/backend_addon:latest
+    build:
+      context: https://github.com/schreiber-lab/scicat-schema-extension.git#main:backend
     depends_on:
       - mongodb
     labels:
@@ -83,7 +82,7 @@ services:
         - "ME_CONFIG_SITE_BASEURL=/mongodb/"
     depends_on:
         - mongodb
-        - catanie
+   #     - catanie
     labels:
        - traefik.http.routers.mongo-express.rule=PathPrefix(`/mongodb`)
        - traefik.http.services.mongo-express.loadbalancer.server.port=8081
@@ -91,5 +90,4 @@ services:
        - "traefik.http.middlewares.auth.basicauth.users=admin:$$2a$$12$$vyTh8.zQ85OygVq1q4cX4u50QJXfW1tSJn/dr2zuQFzAW6F31VUtq"
          # the default user pre-perpeared here uses the admin login of scicatlive
          # use bcrypt e.g. https://bcrypt-generator.com/
-
 
