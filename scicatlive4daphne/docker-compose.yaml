@@ -10,9 +10,9 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       
   mongodb:
-    image: bitnami/mongodb:4.2
+    image: mongo:4.2-bionic
     volumes:
-      - "/srv/mongodb:/bitnami/mongodb"     # check that is mount exists on local filesystem
+      - "/srv/mongodb/data:/data/db" # check that is mount exists on local filesystem at least until mongodb
 
   catamel:
     image: dacat/catamel:latest
