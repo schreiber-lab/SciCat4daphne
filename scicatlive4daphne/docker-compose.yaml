@@ -51,9 +51,9 @@ services:
       FACILITY: "SAMPLE-SITE"
 
   upload-frontend:
-    #image: pithan/upload_frontend:latest
-    build:
-      context: https://github.com/schreiber-lab/scicat-schema-extension.git#main:frontend
+    image: pithan/upload_frontend:latest
+    #build:
+    #  context: https://github.com/schreiber-lab/scicat-schema-extension.git#main:frontend
     volumes:
       - ./config/upload/env.js:/usr/share/nginx/html/upload/env.js
     labels:
@@ -61,9 +61,9 @@ services:
       - traefik.http.routers.upload-frontend.rule=PathPrefix(`/upload`)
 
   backend-addon:
-    #image: pithan/backend_addon:latest
-    build:
-      context: https://github.com/schreiber-lab/scicat-schema-extension.git#main:backend
+    image: pithan/backend_addon:latest
+    #build:
+    #  context: https://github.com/schreiber-lab/scicat-schema-extension.git#main:backend
     depends_on:
       - mongodb
     labels:
