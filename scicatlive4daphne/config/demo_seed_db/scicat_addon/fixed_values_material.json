@@ -1,0 +1,6 @@
+[{"_id":{"$oid":"62a837d155adb3f37e5fb412"},"material_id":"DIP","full_name":"Diindenoperylene","formula":"C32H16"},
+{"_id":{"$oid":"62a837d155adb3f37e5fb413"},"material_id":"PEN","full_name":"Pentacene","formula":"C22H14"},
+{"_id":{"$oid":"62a837d155adb3f37e5fb414"},"material_id":"DIP:PEN 4:1","composition":"DIP4PEN1"},
+{"_id":{"$oid":"62d12004081adac492817b5e"},"material_id":"Li","full_name":"Lithium"},
+{"_id":{"$oid":"62d12011081adac492817b5f"},"material_id":"MoS2","full_name":"Molybdenum disulfide"}]
+

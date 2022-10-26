@@ -13,6 +13,7 @@ services:
     image: mongo:4.2-bionic
     volumes:
       - "/srv/mongodb/data:/data/db" # check that is mount exists on local filesystem at least until mongodb
+      - "./config/demo_seed_db:/docker-entrypoint-initdb.d"  # comment this line if you do not wish to populate a demo db
 
   catamel:
     image: dacat/catamel:latest
@@ -59,7 +60,6 @@ services:
     # Match on the hostname and the path
       - traefik.http.routers.upload-frontend.rule=PathPrefix(`/upload`)
 
-
   backend-addon:
     #image: pithan/backend_addon:latest
     build:
@@ -90,5 +90,4 @@ services:
        - "traefik.http.middlewares.auth.basicauth.users=admin:$$2a$$12$$vyTh8.zQ85OygVq1q4cX4u50QJXfW1tSJn/dr2zuQFzAW6F31VUtq"
          # the default user pre-perpeared here uses the admin login of scicatlive
          # use bcrypt e.g. https://bcrypt-generator.com/
-
 
