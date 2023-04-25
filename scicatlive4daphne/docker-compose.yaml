@@ -16,7 +16,9 @@ services:
       - "./config/demo_seed_db:/docker-entrypoint-initdb.d"  # comment this line if you do not wish to populate a demo db
 
   backend:
-    image: ghcr.io/scicatproject/backend-next:latest
+#    image: ghcr.io/scicatproject/backend-next:latest
+    build:
+      context: https://github.com/SciCatProject/scicat-backend-next.git#v4.0.0-beta.5 
     depends_on:
       - mongodb
     volumes:
@@ -29,7 +31,7 @@ services:
       - "traefik.http.routers.backend.entrypoints=web"
       
   frontend:
-    image: ghcr.io/scicatproject/frontend:latest
+    image: ghcr.io/scicatproject/frontend:stable
     depends_on:
       - backend
     labels:
