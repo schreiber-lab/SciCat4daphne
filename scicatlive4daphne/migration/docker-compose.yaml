@@ -1,0 +1,51 @@
+services:
+
+  reverse-proxy:
+    image: traefik:2.5
+    command: --api.insecure=true --providers.docker=true --entrypoints.web.address=:80
+    ports:
+      - "80:80"
+    #  - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  mongodb:
+    image: mongo:4.2-bionic
+    volumes:
+      - "/srv/mongodb/data:/data/db" # check that is mount exists on local filesystem at least until mongodb
+#      - "/path/to/mongobackup:/mongobackup"
+
+  migrator:
+#    image: ghcr.io/scicatproject/backend-next:latest
+    build:
+      context: migrator
+      dockerfile: ../migration.Dockerfile
+    depends_on:
+      - mongodb
+    volumes:
+      - ../config/backend/config.env:/home/node/app/.env
+     # - ./config/backend/config.local.js:/home/node/app/server/config.local.js
+      - ../config/backend/functionalAccounts.json:/home/node/app/functionalAccounts.json
+      - ./migrate-mongo-config.js:/home/node/app/migrate-mongo-config.js
+
+  mongo-express:
+    image: mongo-express
+    environment:
+        - ME_CONFIG_MONGODB_SERVER=mongodb
+        - ME_CONFIG_MONGODB_PORT=27017
+        - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
+        - "ME_CONFIG_BASICAUTH_USERNAME="
+        - "ME_CONFIG_BASICAUTH_PASSWORD="
+        - "ME_CONFIG_SITE_BASEURL=/mongodb/"
+    depends_on:
+        - mongodb
+    restart: unless-stopped
+
+    labels:
+       - traefik.http.routers.mongo-express.rule=PathPrefix(`/mongodb`)
+       - traefik.http.services.mongo-express.loadbalancer.server.port=8081
+       - "traefik.http.routers.mongo-express.middlewares=auth"
+       - "traefik.http.middlewares.auth.basicauth.users=admin:$$2a$$12$$vyTh8.zQ85OygVq1q4cX4u50QJXfW1tSJn/dr2zuQFzAW6F31VUtq"
+         # the default user pre-perpeared here uses the admin login of scicatlive
+         # use bcrypt e.g. https://bcrypt-generator.com/
+
