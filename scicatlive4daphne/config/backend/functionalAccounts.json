@@ -1,29 +1,29 @@
 [{
-    "account": "myuser",
+    "username": "myuser",
     "password": "mypasswd",
     "email": "scicatadmin2@your.site",
     "role": "admin",
     "global": true
 },
 {
-    "account": "admin",
+    "username": "admin",
     "password": "2jf70TPNZsS",
     "email": "scicatadmin@your.site",
     "role": "admin",
     "global": true
 }, {
-    "account": "ingestor",
+    "username": "ingestor",
     "password": "aman",
     "email": "scicatingestor@your.site",
     "role": "ingestor",
     "global": true
 }, {
-    "account": "archiveManager",
+    "username": "archiveManager",
     "password": "aman",
     "email": "scicatarchivemanager@your.site",
     "role": "archivemanager"
 }, {
-    "account": "proposalIngestor",
+    "username": "proposalIngestor",
     "password": "aman",
     "email": "scicatproposalingestor@your.site",
     "role": "proposalingestor"
