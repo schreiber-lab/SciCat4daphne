@@ -18,6 +18,7 @@
    "jupyterHubUrl":"",
    "landingPage":"",
    "lbBaseURL":"",
+   "extraSiteURL":"/upload",
    "localColumns":[
       {
          "name":"datasetName",
