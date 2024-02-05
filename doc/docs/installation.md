@@ -13,8 +13,8 @@ The described installation has been tested on the following systems:
  
 Tested dependency Versions:
 
- - `docker` version 🔴
- - `docker-compose` version 🔴 installed via 🔴
+ - `docker` version 24
+ - `docker-compose` version 1.29, installed via _pip_
  
 ### Getting started
 Just navigate into the `scicatlive4daphne` directory and run
@@ -37,35 +37,34 @@ docker-compose down
  
 ### Necessary adoptions 
  
-  🔴 Still to be specified.
- 
- - config of upload frontend
+ - configuration of upload frontend
  - password of MongoExpress
  - passwords of default users
+ 
+ configuration templates are provided in `scicatlive4daphne/config`
  
 ## Services in detail
  
 This is an overview of the different services invoked through docker-compose together with the most important configuration options.
  
-!!! help "ask questions / contribute to the configuration"
-    Do not hesitate to participate in GitHub Issue 🔴
+
  
-### SciCat Backend (Catamel)
+### SciCat Backend 
 
 the configuration file is located in 
     
 ```
-scicatlive4daphne/config/catamel/config.local.js
+/scicat4daphne/scicatlive4daphne/config/backend/config.env
 ```
 
-but should not need site-specific changes for a basic installation. For a production environment the entries `pidPrefix` and `site` should be specified.
+but should not need site-specific changes for a basic installation. For a production environment e.g. the entries `pidPrefix` and `site` should be specified.
  
-### SciCat Frontend (Catanie)
+### SciCat Frontend 
 
 this service uses the configuration file
 
 ```
-scicatlive4daphne/config/catanie/config.json
+scicatlive4daphne/config/frontend/config.json
 
 ```
 
@@ -83,30 +82,38 @@ all configuration happens in the `docker-compose.yaml`. Most important is the mo
     volumes:
       - "/srv/mongodb:/bitnami/mongodb"     # check that is mount exists on local file-system
 ```
-fd 
 
-Obvious TODOs:
-  - specify the user of the host system that creates the db (currently it is the user with the uid 🔴)
- 
+in the `docker-compose.yaml` there are also some hints for database backups using the provided script.
  
 ### Upload Frontend 
  
-!!! warning  "Under development"
-    This service may still change significantly especially if parts of it will be ported to Catanie. Please consider this part of the project as a working draft to to define the necessary features.
  
-Can be found at `http://scicat-host/upload`.
+Can be found at `http://scicat-host/upload` with configuration in `scicatlive4daphne/config/upload/env.js`. 
+This file needs to be adopted for each running SciCat instance.
+
+```
+window.env = {
+  "REACT_APP_API_URL": "http://your-scicat-domain.org/api/v3",
+  "REACT_APP_API_URL2": "http://your-scicat-domain.org",
+  "REACT_APP_STORE_KEY": "scicat",
+  "REACT_APP_EXTERNAL_DATASETS_URL": "http://your-scicat-domain.org/datasets",
+  "REACT_APP_ROUTER_BASENAME": "/upload",
+  "PUBLIC_URL": "http://your-scicat-domain.org/upload",
+  "REACT_APP_SCICAT_DEFAULT_DS_OWNER": "a_owner",
+  "REACT_APP_SCICAT_DEFAULT_DS_GROUP": "a_group",
+  "REACT_APP_SCICAT_DEFAULT_DS_OWNER_GROUP": "a_owner_group"
+}
+``` 
+ 
+the primary change needed is to exchange `your-scicat-domain.org` according to the local conditions. For test installation e.g. replace with `localhost`
  
 ### Addon API 
  
 Currently there is no configuration for this service. An interactive api-documentation can be found at `http://scicat-host/swagger-ui`.
 
  
-!!! warning  "Not Stable"
-    This service may disappear completely in case it's functionality would be integrated into Catamel.
- 
-Know issues:
- 
- - calls to this additional backend api currently do not check the token issued by Catamel
+!!! warning  "Not Secure"
+    - calls to this additional backend api currently do not rely on any authentication 
  
 ### MongoDB Web GUI (MongoExpress)
  
@@ -117,19 +124,17 @@ Mainly intended for those who are managing the installation and for inspection o
  
 ### Backup
  
-The current backup strategy 🔴
+The current backup strategy is to run the script `scicatlive4daphne\backup.sh` periodically e.g. in a _cron job_ running it via docker inside an already running container via
+```
+docker exec scicatlive4daphne_mongodb_1 /backup.sh
+```
+from the host system. This script basically relies on [mongodump](https://www.mongodb.com/docs/database-tools/mongodump/).
  
-  🔶 TODO: Once there is a script for backup describe it here 
+#### Restore from backup
  
-#### Restore from Backup
- 
-  🔴 Still to come...
+  Please have a look at the documentation of [mongorestore](https://www.mongodb.com/docs/database-tools/mongorestore/).
+  In case you want to import an existing _dump_ please do so starting from a clean Mongo DB before starting the SciCat backend for the first time.
   
-### search-api
-
-  🔶 TODO: still to be seen if there is a sensible how to integrate this in this context.
-  
- 
  
  <!--
  ### Symbols for doc writing 

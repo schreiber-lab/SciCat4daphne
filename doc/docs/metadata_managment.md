@@ -1,8 +1,3 @@
-!!! warning  "Project is still under active development"
-     Please consider this project in it's current state just as a 
-     draft. The api is not yet stable and there may still be important 
-     security vulnerabilities. Documentation is still far from being complete.
-
 # Metadata Schemas
 One of the unique features of SciCat is its flexibility in capturing Scientific Metadata. However, to assure a systematic (machine readable and AI-ready) structure of the metadata captured in SciCat one approach is to use well defined _Metadata Schemas_. Ideally these schemata are predefined and follow given ontologies (e.g. the PaNdata Ontology) or rules that are accepted in the community (e.g. NeXus). 
 
@@ -14,14 +9,11 @@ The SciCat Extention proposed here offers the following features:
 - Creation and Management of Metadata Schemas through the web frontend (see ingestion frontend)
 - Metadata Schemas can be specific for "Datasets" or "Samples"
 - **Validation** to check if of provided metadata follows the available metadata schemas
-- 🔶 Support of schemas with a managed catalog of entries
+- Support of schemas with a managed catalog of entries
 
 
 ## Schema specification
-
-!!! warning  "Data structure not stable"
-    Currently the schema definition is kept close to [cerberus](https://docs.python-cerberus.org/en/stable/) which may change in the future.
-    
+ 
 ### Schema structure
 
 ```json
@@ -52,11 +44,10 @@ The basic fields in the schema are `schema_name` and `schema_type`, where the ty
 - `allowed`: can be used to specify a list of allowed values that will be
 - `changes_likely`: highlights fields that are likely to change in case an exiting dataset is used as _template_ for a new one. 
 - `scan_ref`: ... not yet used. Intended for validation in case of data references (might be removed in the future)
-- `schema`: 🔶 for lists etc.
+
 
 ## Examples of Metadata schemas
 
-🔶 still some text to come...
 
 ### Metadata schemas dedicated to a experimental techniques
 
@@ -121,14 +112,9 @@ The basic fields in the schema are `schema_name` and `schema_type`, where the ty
 
 ![Screenshot](img/logbook-xrr.png)
 
-## Managed schemas
-🔶 still to be implemented in frontend...
+## Managed schemas / Auto-complete schemas
 
-🔶 The idea here is to have not only the schema in the DB but also a list of know entries to these schemas that can be can be used as metadata.
-
-🔶 Needs more detailed explanation. 
-
-🔶 this is what the `fixed_value_entries` key refers to.
+ The idea here is to have not only the schema in the DB but also a list of know entries to these schemas that can be can be used as metadata. This is what the `fixed_value_entries` key refers to.
 
 ### Example: Material database for samples
 One _use-case_ for this could be a sort of DB which contains materials samples can be composed of. Here is an example for such a schema:

@@ -1,11 +1,8 @@
-!!! warning  "Project is still under active development"
-     Please consider this project in it's current state just as a 
-     draft. The api is not yet stable and there may still be important 
-     security vulnerabilities. Documentation is still far from being complete.
-
 # Upload / ingestion frontend
 
 With this additional service we aim to provide the possibility create Datasets with structured Metadata through a web frontend.
+In the given configuration this service that is part of the [Scicat Schema Extension](https://github.com/schreiber-lab/scicat-schema-extension)
+is accessible at `http://scicat-host/upload`.
 
 ![Screenshot Dataset](img/ingest_dataset.png)
 

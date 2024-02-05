@@ -4,7 +4,7 @@ cd doc
 mkdocs gh-deploy --force
 ```
 
-#clone with submodule to build frontend image
+#run backup script from host system inside docker container
 ```
-git clone --recurse-submodules https://github.com/schreiber-lab/SciCat4daphne.git
+docker exec scicatlive4daphne_mongodb_1 /backup.sh
 ```
