@@ -16,7 +16,7 @@
     
     
       
-        <title>Metadata managment - SciCat 4 DAPHNE</title>
+        <title>Metadata Schemas - SciCat 4 DAPHNE</title>
       
     
     
@@ -78,7 +78,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Metadata managment
+              Metadata Schemas
             
           </span>
         </div>
@@ -152,8 +152,8 @@
 
 
   <li class="md-nav__item">
-    <a href=".." title="Home" class="md-nav__link">
-      Home
+    <a href=".." title="A SciCat production environment optimized for small scale installations" class="md-nav__link">
+      A SciCat production environment optimized for small scale installations
     </a>
   </li>
 
@@ -188,8 +188,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../ingestion_frontend/" title="Ingestion frontend" class="md-nav__link">
-      Ingestion frontend
+    <a href="../ingestion_frontend/" title="Upload / ingestion frontend" class="md-nav__link">
+      Upload / ingestion frontend
     </a>
   </li>
 
@@ -209,12 +209,12 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Metadata managment
+        Metadata Schemas
         <span class="md-nav__icon md-icon"></span>
       </label>
     
-    <a href="./" title="Metadata managment" class="md-nav__link md-nav__link--active">
-      Metadata managment
+    <a href="./" title="Metadata Schemas" class="md-nav__link md-nav__link--active">
+      Metadata Schemas
     </a>
     
       
@@ -278,11 +278,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#managed-schemas" class="md-nav__link">
-    Managed schemas
+  <a href="#managed-schemas-auto-complete-schemas" class="md-nav__link">
+    Managed schemas / Auto-complete schemas
   </a>
   
-    <nav class="md-nav" aria-label="Managed schemas">
+    <nav class="md-nav" aria-label="Managed schemas / Auto-complete schemas">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -301,18 +301,6 @@
   
 </nav>
     
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../further_ideas/" title="Further ideas" class="md-nav__link">
-      Further ideas
-    </a>
   </li>
 
     
@@ -387,11 +375,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#managed-schemas" class="md-nav__link">
-    Managed schemas
+  <a href="#managed-schemas-auto-complete-schemas" class="md-nav__link">
+    Managed schemas / Auto-complete schemas
   </a>
   
-    <nav class="md-nav" aria-label="Managed schemas">
+    <nav class="md-nav" aria-label="Managed schemas / Auto-complete schemas">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -422,13 +410,7 @@
                   
                 
                 
-                <div class="admonition warning">
-<p class="admonition-title">Project is still under active development</p>
-<p>Please consider this project in it's current state just as a 
- draft. The api is not yet stable and there may still be important 
- security vulnerabilities. Documentation is still far from being complete.</p>
-</div>
-<h1 id="metadata-schemas">Metadata Schemas</h1>
+                <h1 id="metadata-schemas">Metadata Schemas</h1>
 <p>One of the unique features of SciCat is its flexibility in capturing Scientific Metadata. However, to assure a systematic (machine readable and AI-ready) structure of the metadata captured in SciCat one approach is to use well defined <em>Metadata Schemas</em>. Ideally these schemata are predefined and follow given ontologies (e.g. the PaNdata Ontology) or rules that are accepted in the community (e.g. NeXus). </p>
 <p>Unfortunately for many <em>use cases</em> it is very difficult to agree on a ridged metadata structure beforehand. Here we try to follow a more flexible approach that explicitly allows the creation and modification of <em>metadata schemas</em> any time. This is rather a pragmatic decision mainly due to the fact that for many experimental datasets it is not yet clear which metadata should be captured and to some extend it just postpones the decision on the final, ridged metadata structure. In a way this approach is inspired by what was developed in <em>AMORE / AMARCORD (EuXFEL)</em>.</p>
 <p>The SciCat Extention proposed here offers the following features:</p>
@@ -437,13 +419,9 @@
 <li>Creation and Management of Metadata Schemas through the web frontend (see ingestion frontend)</li>
 <li>Metadata Schemas can be specific for "Datasets" or "Samples"</li>
 <li><strong>Validation</strong> to check if of provided metadata follows the available metadata schemas</li>
-<li>🔶 Support of schemas with a managed catalog of entries</li>
+<li>Support of schemas with a managed catalog of entries</li>
 </ul>
 <h2 id="schema-specification">Schema specification</h2>
-<div class="admonition warning">
-<p class="admonition-title">Data structure not stable</p>
-<p>Currently the schema definition is kept close to <a href="https://docs.python-cerberus.org/en/stable/">cerberus</a> which may change in the future.</p>
-</div>
 <h3 id="schema-structure">Schema structure</h3>
 <pre><code class="language-json">  {
     &quot;schema_name&quot;: &quot;measurement&quot;,
@@ -471,10 +449,8 @@
 <li><code>allowed</code>: can be used to specify a list of allowed values that will be</li>
 <li><code>changes_likely</code>: highlights fields that are likely to change in case an exiting dataset is used as <em>template</em> for a new one. </li>
 <li><code>scan_ref</code>: ... not yet used. Intended for validation in case of data references (might be removed in the future)</li>
-<li><code>schema</code>: 🔶 for lists etc.</li>
 </ul>
 <h2 id="examples-of-metadata-schemas">Examples of Metadata schemas</h2>
-<p>🔶 still some text to come...</p>
 <h3 id="metadata-schemas-dedicated-to-a-experimental-techniques">Metadata schemas dedicated to a experimental techniques</h3>
 <pre><code class="language-json">  {
     &quot;schema_name&quot;: &quot;GIWAXS&quot;,
@@ -530,11 +506,8 @@
   }
 </code></pre>
 <p><img alt="Screenshot" src="../img/logbook-xrr.png" /></p>
-<h2 id="managed-schemas">Managed schemas</h2>
-<p>🔶 still to be implemented in frontend...</p>
-<p>🔶 The idea here is to have not only the schema in the DB but also a list of know entries to these schemas that can be can be used as metadata.</p>
-<p>🔶 Needs more detailed explanation. </p>
-<p>🔶 this is what the <code>fixed_value_entries</code> key refers to.</p>
+<h2 id="managed-schemas-auto-complete-schemas">Managed schemas / Auto-complete schemas</h2>
+<p>The idea here is to have not only the schema in the DB but also a list of know entries to these schemas that can be can be used as metadata. This is what the <code>fixed_value_entries</code> key refers to.</p>
 <h3 id="example-material-database-for-samples">Example: Material database for samples</h3>
 <p>One <em>use-case</em> for this could be a sort of DB which contains materials samples can be composed of. Here is an example for such a schema:</p>
 <pre><code class="language-json">{
@@ -600,7 +573,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../ingestion_frontend/" title="Ingestion frontend" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../ingestion_frontend/" title="Upload / ingestion frontend" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -609,25 +582,11 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Ingestion frontend
+                Upload / ingestion frontend
               </div>
             </div>
           </a>
         
-        
-          <a href="../further_ideas/" title="Further ideas" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Further ideas
-              </div>
-            </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
         
       </nav>
     </div>

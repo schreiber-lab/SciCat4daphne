@@ -152,8 +152,8 @@
 
 
   <li class="md-nav__item">
-    <a href=".." title="Home" class="md-nav__link">
-      Home
+    <a href=".." title="A SciCat production environment optimized for small scale installations" class="md-nav__link">
+      A SciCat production environment optimized for small scale installations
     </a>
   </li>
 
@@ -207,26 +207,6 @@
     Authentication
   </a>
   
-    <nav class="md-nav" aria-label="Authentication">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#temporarily-solution" class="md-nav__link">
-    Temporarily solution
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#access-management" class="md-nav__link">
-    Access management
-  </a>
-  
 </li>
       
     </ul>
@@ -242,8 +222,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../ingestion_frontend/" title="Ingestion frontend" class="md-nav__link">
-      Ingestion frontend
+    <a href="../ingestion_frontend/" title="Upload / ingestion frontend" class="md-nav__link">
+      Upload / ingestion frontend
     </a>
   </li>
 
@@ -254,20 +234,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../metadata_managment/" title="Metadata managment" class="md-nav__link">
-      Metadata managment
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../further_ideas/" title="Further ideas" class="md-nav__link">
-      Further ideas
+    <a href="../metadata_managment/" title="Metadata Schemas" class="md-nav__link">
+      Metadata Schemas
     </a>
   </li>
 
@@ -298,26 +266,6 @@
     Authentication
   </a>
   
-    <nav class="md-nav" aria-label="Authentication">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#temporarily-solution" class="md-nav__link">
-    Temporarily solution
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#access-management" class="md-nav__link">
-    Access management
-  </a>
-  
 </li>
       
     </ul>
@@ -339,11 +287,11 @@
                   <h1>Access managment</h1>
                 
                 <h2 id="authentication">Authentication</h2>
-<p>Having the spirit of DAPHNE in mind we would like to use an Authentication that can work for most institutions in DAPHNE out of the box. An evident candidate for an AAI solution to achieve this would be <a href="https://hifis.net/doc/helmholtz-aai/">HIFIS AAI</a> which provides the OIDC protocol that is also supported by SciCat. Another option that could be considered would be to use the public service offered by <a href="https://info.orcid.org/faq/what-is-openid/">ORCID</a> as identity provider.</p>
-<h3 id="temporarily-solution">Temporarily solution</h3>
-<p>Until the decision has been taken which authentication service to rely on we use the integrated account management in SciCat that is originally intended for (functional accounts)[https://scicatproject.github.io/documentation/Development/Login.html] only. To create a new user account, it has to be added with an initial password in <code>functionalAccounts.json</code> file provided in the config for the provided docker compose solution (<code>scicatlive4daphne/config/catamel/functionalAccounts.json</code>). Since this initial password is keep in clear text it should be changed using the API endpoint <a href="https://scicatproject.github.io/api/#operation/User.changePassword"><code>Users/change-password</code></a> , e.g. though the api explorer for the time being.</p>
-<h2 id="access-management">Access management</h2>
-<p>Currently we do not see the need to restrict the access of authenticated users to certain datasets. This is evidently a major difference to SciCat installation at large scale facilities. However, establishing access management rules is foreseen in SciCat and can therefor be added with relatively low efforts.</p>
+<p>This is still an open issue. So far, for small installations, only the use of so called <em>functional accounts</em> is supported.
+The user credentials are to be specified in <code>scicatlive4daphne/config/backend/functionalAccounts.json</code> and are imported from
+here into the underlying <em>MongoDB</em>. This process is triggered on each start or restart of the backend service. Once imported,
+the account credentials are no longer needed in <code>functionalAccounts.json</code> and should be removed from this file to avoid 
+security threats. </p>
                 
               
               
@@ -377,13 +325,13 @@
           </a>
         
         
-          <a href="../ingestion_frontend/" title="Ingestion frontend" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../ingestion_frontend/" title="Upload / ingestion frontend" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Ingestion frontend
+                Upload / ingestion frontend
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

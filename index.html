@@ -78,7 +78,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Home
+              A SciCat production environment optimized for small scale installations
             
           </span>
         </div>
@@ -161,12 +161,12 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Home
+        A SciCat production environment optimized for small scale installations
         <span class="md-nav__icon md-icon"></span>
       </label>
     
-    <a href="." title="Home" class="md-nav__link md-nav__link--active">
-      Home
+    <a href="." title="A SciCat production environment optimized for small scale installations" class="md-nav__link md-nav__link--active">
+      A SciCat production environment optimized for small scale installations
     </a>
     
       
@@ -233,8 +233,8 @@
 
 
   <li class="md-nav__item">
-    <a href="ingestion_frontend/" title="Ingestion frontend" class="md-nav__link">
-      Ingestion frontend
+    <a href="ingestion_frontend/" title="Upload / ingestion frontend" class="md-nav__link">
+      Upload / ingestion frontend
     </a>
   </li>
 
@@ -245,20 +245,8 @@
 
 
   <li class="md-nav__item">
-    <a href="metadata_managment/" title="Metadata managment" class="md-nav__link">
-      Metadata managment
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="further_ideas/" title="Further ideas" class="md-nav__link">
-      Further ideas
+    <a href="metadata_managment/" title="Metadata Schemas" class="md-nav__link">
+      Metadata Schemas
     </a>
   </li>
 
@@ -316,13 +304,7 @@
                   
                 
                 
-                <div class="admonition warning">
-<p class="admonition-title">Project is still under active development</p>
-<p>Please consider this project in it's current state just as a 
- draft. The api is not yet stable and there may still be important 
- security vulnerabilities. Documentation is still far from being complete.</p>
-</div>
-<h1 id="a-scicat-production-environment-optimized-for-small-scale-installations">A SciCat production environment optimized for small scale installations</h1>
+                <h1 id="a-scicat-production-environment-optimized-for-small-scale-installations">A SciCat production environment optimized for small scale installations</h1>
 <div class="admonition info">
 <p class="admonition-title">DAPHNE4NFDI</p>
 <p>This project is initiated within the framework of <a href="https://www.daphne4nfdi.de/">DAPHNE4NFDI</a>, the "Data for Photon and Neutron Science" consortium within <a href="https://www.nfdi.de/">NFDI</a>.</p>
@@ -335,9 +317,12 @@
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Contributions welcome!</p>
-<p>Please consider to participate or ask questions using github issues or pull requests. </p>
-<p><a href="https://github.com/schreiber-lab/SciCat4daphne">SciCat4daphne on GitHub</a></p>
-<p>For further enquirers please contact linus.pithan [at] uni-tuebingen.de. </p>
+<p>If you consider to participate or to continue to develop this project have a look at</p>
+<ul>
+<li><a href="https://github.com/schreiber-lab/SciCat4daphne">SciCat4daphne on GitHub</a></li>
+<li><a href="https://github.com/schreiber-lab/scicat-schema-extension">Scicat Schema Extension</a></li>
+</ul>
+<p>and contat alexander.hinderhofer [at] uni-tuebingen.de or linus.pithan [at] desy.de. </p>
 </div>
 <h2 id="extensions-to-scicat">Extensions to SciCat</h2>
 <p>within this package there are currently two additional features extending SciCat's current capabilities:</p>
@@ -345,6 +330,12 @@
 <li>A web-service to create new Datasets through a GUI</li>
 <li>A metadata schema management and validation tool (frontend + backend) for Scientific Metadata</li>
 </ul>
+<div class="admonition warning">
+<p class="admonition-title">API endpoints without authentication</p>
+</div>
+<p>While the GUI to create Datasets through a GUI is using the user authentication of SciCat there are some additional
+  API endpoints for schema management that work without user authentication. For this reason the <em>Scicat Schema Extension</em> 
+  is rather to be considered to be in a <em>proof of concept</em> state than being production ready.</p>
 <h2 id="scicatlive-vs-scicat4daphne">scicatlive vs. scicat4daphne</h2>
 <p>The solution provided in this package is based on <a href="https://github.com/SciCatProject/scicatlive">scicatlive</a> which rather addresses the needs of software developers. We have worked on it to adopt it to our needs. The main difference are:</p>
 <ul>

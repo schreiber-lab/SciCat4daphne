@@ -152,8 +152,8 @@
 
 
   <li class="md-nav__item">
-    <a href=".." title="Home" class="md-nav__link">
-      Home
+    <a href=".." title="A SciCat production environment optimized for small scale installations" class="md-nav__link">
+      A SciCat production environment optimized for small scale installations
     </a>
   </li>
 
@@ -233,15 +233,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#scicat-backend-catamel" class="md-nav__link">
-    SciCat Backend (Catamel)
+  <a href="#scicat-backend" class="md-nav__link">
+    SciCat Backend
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scicat-frontend-catanie" class="md-nav__link">
-    SciCat Frontend (Catanie)
+  <a href="#scicat-frontend" class="md-nav__link">
+    SciCat Frontend
   </a>
   
 </li>
@@ -304,20 +304,13 @@
         
           <li class="md-nav__item">
   <a href="#restore-from-backup" class="md-nav__link">
-    Restore from Backup
+    Restore from backup
   </a>
   
 </li>
         
       </ul>
     </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#search-api" class="md-nav__link">
-    search-api
-  </a>
   
 </li>
         
@@ -351,8 +344,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../ingestion_frontend/" title="Ingestion frontend" class="md-nav__link">
-      Ingestion frontend
+    <a href="../ingestion_frontend/" title="Upload / ingestion frontend" class="md-nav__link">
+      Upload / ingestion frontend
     </a>
   </li>
 
@@ -363,20 +356,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../metadata_managment/" title="Metadata managment" class="md-nav__link">
-      Metadata managment
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../further_ideas/" title="Further ideas" class="md-nav__link">
-      Further ideas
+    <a href="../metadata_managment/" title="Metadata Schemas" class="md-nav__link">
+      Metadata Schemas
     </a>
   </li>
 
@@ -445,15 +426,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#scicat-backend-catamel" class="md-nav__link">
-    SciCat Backend (Catamel)
+  <a href="#scicat-backend" class="md-nav__link">
+    SciCat Backend
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#scicat-frontend-catanie" class="md-nav__link">
-    SciCat Frontend (Catanie)
+  <a href="#scicat-frontend" class="md-nav__link">
+    SciCat Frontend
   </a>
   
 </li>
@@ -516,20 +497,13 @@
         
           <li class="md-nav__item">
   <a href="#restore-from-backup" class="md-nav__link">
-    Restore from Backup
+    Restore from backup
   </a>
   
 </li>
         
       </ul>
     </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#search-api" class="md-nav__link">
-    search-api
-  </a>
   
 </li>
         
@@ -570,8 +544,8 @@
 </ul>
 <p>Tested dependency Versions:</p>
 <ul>
-<li><code>docker</code> version 🔴</li>
-<li><code>docker-compose</code> version 🔴 installed via 🔴</li>
+<li><code>docker</code> version 24</li>
+<li><code>docker-compose</code> version 1.29, installed via <em>pip</em></li>
 </ul>
 <h3 id="getting-started">Getting started</h3>
 <p>Just navigate into the <code>scicatlive4daphne</code> directory and run</p>
@@ -584,26 +558,22 @@
 <pre><code>docker-compose down
 </code></pre>
 <h3 id="necessary-adoptions">Necessary adoptions</h3>
-<p>🔴 Still to be specified.</p>
 <ul>
-<li>config of upload frontend</li>
+<li>configuration of upload frontend</li>
 <li>password of MongoExpress</li>
 <li>passwords of default users</li>
 </ul>
+<p>configuration templates are provided in <code>scicatlive4daphne/config</code></p>
 <h2 id="services-in-detail">Services in detail</h2>
 <p>This is an overview of the different services invoked through docker-compose together with the most important configuration options.</p>
-<div class="admonition help">
-<p class="admonition-title">ask questions / contribute to the configuration</p>
-<p>Do not hesitate to participate in GitHub Issue 🔴</p>
-</div>
-<h3 id="scicat-backend-catamel">SciCat Backend (Catamel)</h3>
+<h3 id="scicat-backend">SciCat Backend</h3>
 <p>the configuration file is located in </p>
-<pre><code>scicatlive4daphne/config/catamel/config.local.js
+<pre><code>/scicat4daphne/scicatlive4daphne/config/backend/config.env
 </code></pre>
-<p>but should not need site-specific changes for a basic installation. For a production environment the entries <code>pidPrefix</code> and <code>site</code> should be specified.</p>
-<h3 id="scicat-frontend-catanie">SciCat Frontend (Catanie)</h3>
+<p>but should not need site-specific changes for a basic installation. For a production environment e.g. the entries <code>pidPrefix</code> and <code>site</code> should be specified.</p>
+<h3 id="scicat-frontend">SciCat Frontend</h3>
 <p>this service uses the configuration file</p>
-<pre><code>scicatlive4daphne/config/catanie/config.json
+<pre><code>scicatlive4daphne/config/frontend/config.json
 
 </code></pre>
 <p>where e.g. the appearance of the scientific metadata (tree view vs. simple tabular view) and the columns of the dataset table can be configured.</p>
@@ -614,35 +584,42 @@
 <pre><code>    volumes:
       - &quot;/srv/mongodb:/bitnami/mongodb&quot;     # check that is mount exists on local file-system
 </code></pre>
-<p>fd </p>
-<p>Obvious TODOs:
-  - specify the user of the host system that creates the db (currently it is the user with the uid 🔴)</p>
+<p>in the <code>docker-compose.yaml</code> there are also some hints for database backups using the provided script.</p>
 <h3 id="upload-frontend">Upload Frontend</h3>
-<div class="admonition warning">
-<p class="admonition-title">Under development</p>
-<p>This service may still change significantly especially if parts of it will be ported to Catanie. Please consider this part of the project as a working draft to to define the necessary features.</p>
-</div>
-<p>Can be found at <code>http://scicat-host/upload</code>.</p>
+<p>Can be found at <code>http://scicat-host/upload</code> with configuration in <code>scicatlive4daphne/config/upload/env.js</code>. 
+This file needs to be adopted for each running SciCat instance.</p>
+<pre><code>window.env = {
+  &quot;REACT_APP_API_URL&quot;: &quot;http://your-scicat-domain.org/api/v3&quot;,
+  &quot;REACT_APP_API_URL2&quot;: &quot;http://your-scicat-domain.org&quot;,
+  &quot;REACT_APP_STORE_KEY&quot;: &quot;scicat&quot;,
+  &quot;REACT_APP_EXTERNAL_DATASETS_URL&quot;: &quot;http://your-scicat-domain.org/datasets&quot;,
+  &quot;REACT_APP_ROUTER_BASENAME&quot;: &quot;/upload&quot;,
+  &quot;PUBLIC_URL&quot;: &quot;http://your-scicat-domain.org/upload&quot;,
+  &quot;REACT_APP_SCICAT_DEFAULT_DS_OWNER&quot;: &quot;a_owner&quot;,
+  &quot;REACT_APP_SCICAT_DEFAULT_DS_GROUP&quot;: &quot;a_group&quot;,
+  &quot;REACT_APP_SCICAT_DEFAULT_DS_OWNER_GROUP&quot;: &quot;a_owner_group&quot;
+}
+</code></pre>
+<p>the primary change needed is to exchange <code>your-scicat-domain.org</code> according to the local conditions. For test installation e.g. replace with <code>localhost</code></p>
 <h3 id="addon-api">Addon API</h3>
 <p>Currently there is no configuration for this service. An interactive api-documentation can be found at <code>http://scicat-host/swagger-ui</code>.</p>
 <div class="admonition warning">
-<p class="admonition-title">Not Stable</p>
-<p>This service may disappear completely in case it's functionality would be integrated into Catamel.</p>
-</div>
-<p>Know issues:</p>
+<p class="admonition-title">Not Secure</p>
 <ul>
-<li>calls to this additional backend api currently do not check the token issued by Catamel</li>
+<li>calls to this additional backend api currently do not rely on any authentication </li>
 </ul>
+</div>
 <h3 id="mongodb-web-gui-mongoexpress">MongoDB Web GUI (MongoExpress)</h3>
 <p>Mainly intended for those who are managing the installation and for inspection of the DB. By default this service is deactivated (commented out in <code>docker-compose.yaml</code>). The login for this service is specified in the <code>docker-compose.yaml</code> and managed by <code>traefik</code>. The password is hashed using 🔴 which can e.g. be generated at 🔴.</p>
 <h2 id="maintenance-and-house-keeping">Maintenance and House Keeping</h2>
 <h3 id="backup">Backup</h3>
-<p>The current backup strategy 🔴</p>
-<p>🔶 TODO: Once there is a script for backup describe it here </p>
-<h4 id="restore-from-backup">Restore from Backup</h4>
-<p>🔴 Still to come...</p>
-<h3 id="search-api">search-api</h3>
-<p>🔶 TODO: still to be seen if there is a sensible how to integrate this in this context.</p>
+<p>The current backup strategy is to run the script <code>scicatlive4daphne\backup.sh</code> periodically e.g. in a <em>cron job</em> running it via docker inside an already running container via</p>
+<pre><code>docker exec scicatlive4daphne_mongodb_1 /backup.sh
+</code></pre>
+<p>from the host system. This script basically relies on <a href="https://www.mongodb.com/docs/database-tools/mongodump/">mongodump</a>.</p>
+<h4 id="restore-from-backup">Restore from backup</h4>
+<p>Please have a look at the documentation of <a href="https://www.mongodb.com/docs/database-tools/mongorestore/">mongorestore</a>.
+  In case you want to import an existing <em>dump</em> please do so starting from a clean Mongo DB before starting the SciCat backend for the first time.</p>
 <!--
  ### Symbols for doc writing 
  ✅ ❌ ❓ 🔴 🔶
@@ -665,7 +642,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href=".." title="Home" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href=".." title="A SciCat production environment optimized for small scale installations" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -674,7 +651,7 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Home
+                A SciCat production environment optimized for small scale installations
               </div>
             </div>
           </a>
