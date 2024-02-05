@@ -1,8 +1,3 @@
-!!! warning  "Project is still under active development"
-     Please consider this project in it's current state just as a 
-     draft. The api is not yet stable and there may still be important 
-     security vulnerabilities. Documentation is still far from being complete.
-
 # A SciCat production environment optimized for small scale installations
 
 !!! info  "DAPHNE4NFDI"
@@ -17,11 +12,12 @@ The boundary conditions put to this project are
  
  
 !!! note  "Contributions welcome!"
-     Please consider to participate or ask questions using github issues or pull requests. 
+     If you consider to participate or to continue to develop this project have a look at
      
-     [SciCat4daphne on GitHub](https://github.com/schreiber-lab/SciCat4daphne)
+     - [SciCat4daphne on GitHub](https://github.com/schreiber-lab/SciCat4daphne)
+     - [Scicat Schema Extension](https://github.com/schreiber-lab/scicat-schema-extension)
      
-     For further enquirers please contact linus.pithan [at] uni-tuebingen.de. 
+     and contat alexander.hinderhofer [at] uni-tuebingen.de or linus.pithan [at] desy.de. 
 
 
 ## Extensions to SciCat
@@ -31,6 +27,10 @@ within this package there are currently two additional features extending SciCat
 * A web-service to create new Datasets through a GUI
 * A metadata schema management and validation tool (frontend + backend) for Scientific Metadata
 
+!!! warning  "API endpoints without authentication"
+  While the GUI to create Datasets through a GUI is using the user authentication of SciCat there are some additional
+  API endpoints for schema management that work without user authentication. For this reason the _Scicat Schema Extension_ 
+  is rather to be considered to be in a _proof of concept_ state than being production ready.
 
 ## scicatlive vs. scicat4daphne
 
